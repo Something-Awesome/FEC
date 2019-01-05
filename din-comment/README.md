@@ -1,30 +1,32 @@
-# Project Name
+# Front End Capstone - Comment Component
 
-> Project description
+> Build an easy to use web component to allow users to comment and reply to a blog post.
+> The design mimics Kickstarter comment page.
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+- TODO: add teams' repo
 
 ## Table of Contents
 
 1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
+1. Description (TODO: add in description)
 
 ## Usage
 
-> Some usage instructions
+To start the app, run the following:
+
+```sh
+npm start
+npm run build
+npm run genSeedData
+```
 
 ## Requirements
 
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
 - Node 6.13.0
-- etc
 
 ## Development
 
@@ -36,4 +38,3 @@ From within the root directory:
 npm install -g webpack
 npm install
 ```
-
