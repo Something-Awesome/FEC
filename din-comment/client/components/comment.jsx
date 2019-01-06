@@ -46,15 +46,33 @@ const Comment = props => {
   }
 
   return (
-    <div className={`comment-${comments.commentId}`}>
-      <div>{comments.comment}</div>
-      <img src={comments.avatar} className="avatar" />
-      <span> {comments.user}</span>
-      <div>{moment(comments.createdAt).fromNow()}</div>
-      <button onClick={props.handleReply} className="btn btn-link btn-sm">
-        Reply
-      </button>
-      {showReplyBox}
+    <div>
+      <div
+        className={`comment-${comments.commentId}`}
+        style={{
+          backgroundColor: "#FFFFFF",
+          padding: "15px",
+          borderColor: "rgb(232, 232, 232)",
+          borderStyle: "solid",
+          borderWidth: "1px"
+        }}
+      >
+        <img src={comments.avatar} className="avatar" />
+        <span>
+          <span> {comments.user}</span>
+          <br />
+          <a herf={"www.google.com"}>
+            <time className="timeBlock">
+              {moment(comments.createdAt).fromNow()}
+            </time>
+          </a>
+        </span>
+        <p style={{ lineHeight: "2.4rem" }}>{comments.comment}</p>
+        <button onClick={props.handleReply} className="btn btn-link btn-sm">
+          Reply
+        </button>
+        {showReplyBox}
+      </div>
       {replies}
     </div>
   );

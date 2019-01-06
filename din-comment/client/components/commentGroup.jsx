@@ -5,7 +5,15 @@ const CommentGroup = props => {
   console.log("props in comment group", props);
   let formatComments = props.comments.map((comment, index) => {
     return (
-      <li key={comment.commentId} className="list-group-item">
+      <li
+        key={comment.commentId}
+        className="list-group-item"
+        style={{
+          backgroundColor: "#FBFBFA",
+          borderStyle: "solid",
+          borderColor: "rgb(232, 232, 232)"
+        }}
+      >
         <Comment
           comment={comment}
           currentUser={props.currentUser}
