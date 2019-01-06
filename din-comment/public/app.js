@@ -17253,6 +17253,10 @@ var _commentGroup = __webpack_require__(145);
 
 var _commentGroup2 = _interopRequireDefault(_commentGroup);
 
+var _faqBox = __webpack_require__(273);
+
+var _faqBox2 = _interopRequireDefault(_faqBox);
+
 var _jquery = __webpack_require__(150);
 
 var _jquery2 = _interopRequireDefault(_jquery);
@@ -17417,21 +17421,22 @@ var App = function (_Component) {
             className: "inputCommentBox",
             value: this.state.inputValue,
             onChange: this.handleChange
-          })
-        ),
-        _react2.default.createElement(
-          "span",
-          null,
+          }),
           _react2.default.createElement(
-            "button",
-            {
-              onClick: this.handleSubmit,
-              id: "submitButton",
-              className: "btn btn-link btn-lg"
-            },
-            "Submit"
+            "span",
+            null,
+            _react2.default.createElement(
+              "button",
+              {
+                onClick: this.handleSubmit,
+                id: "submitButton",
+                className: "btn btn-link btn-lg"
+              },
+              "Submit"
+            )
           )
         ),
+        _react2.default.createElement("div", null),
         _react2.default.createElement(_commentGroup2.default, {
           comments: this.state.comments,
           currentUser: this.state.currentUser,
@@ -17443,7 +17448,8 @@ var App = function (_Component) {
           handleReply: this.handleReply,
           handleReplyChange: this.handleReplyChange,
           handleReplySubmit: this.handleReplySubmit
-        })
+        }),
+        _react2.default.createElement(_faqBox2.default, null)
       );
     }
   }]);
@@ -41021,7 +41027,15 @@ var CommentGroup = function CommentGroup(props) {
   var formatComments = props.comments.map(function (comment, index) {
     return _react2.default.createElement(
       "li",
-      { key: comment.commentId, className: "list-group-item" },
+      {
+        key: comment.commentId,
+        className: "list-group-item",
+        style: {
+          backgroundColor: "#FBFBFA",
+          borderStyle: "solid",
+          borderColor: "rgb(232, 232, 232)"
+        }
+      },
       _react2.default.createElement(_comment2.default, {
         comment: comment,
         currentUser: props.currentUser,
@@ -41109,30 +41123,52 @@ var Comment = function Comment(props) {
 
   return _react2.default.createElement(
     "div",
-    { className: "comment-" + comments.commentId },
+    null,
     _react2.default.createElement(
       "div",
-      null,
-      comments.comment
+      {
+        className: "comment-" + comments.commentId,
+        style: {
+          backgroundColor: "#FFFFFF",
+          padding: "15px",
+          borderColor: "rgb(232, 232, 232)",
+          borderStyle: "solid",
+          borderWidth: "1px"
+        }
+      },
+      _react2.default.createElement("img", { src: comments.avatar, className: "avatar" }),
+      _react2.default.createElement(
+        "span",
+        null,
+        _react2.default.createElement(
+          "span",
+          null,
+          " ",
+          comments.user
+        ),
+        _react2.default.createElement("br", null),
+        _react2.default.createElement(
+          "a",
+          { herf: "www.google.com" },
+          _react2.default.createElement(
+            "time",
+            { className: "timeBlock" },
+            (0, _moment2.default)(comments.createdAt).fromNow()
+          )
+        )
+      ),
+      _react2.default.createElement(
+        "p",
+        { style: { lineHeight: "2.4rem" } },
+        comments.comment
+      ),
+      _react2.default.createElement(
+        "button",
+        { onClick: props.handleReply, className: "btn btn-link btn-sm" },
+        "Reply"
+      ),
+      showReplyBox
     ),
-    _react2.default.createElement("img", { src: comments.avatar, className: "avatar" }),
-    _react2.default.createElement(
-      "span",
-      null,
-      " ",
-      comments.user
-    ),
-    _react2.default.createElement(
-      "div",
-      null,
-      (0, _moment2.default)(comments.createdAt).fromNow()
-    ),
-    _react2.default.createElement(
-      "button",
-      { onClick: props.handleReply, className: "btn btn-link btn-sm" },
-      "Reply"
-    ),
-    showReplyBox,
     replies
   );
 };
@@ -41160,22 +41196,31 @@ var Reply = function Reply(props) {
   console.log("reply propsssss", props);
   return _react2.default.createElement(
     "div",
-    { className: "reply-" + props.replyId },
+    {
+      className: "reply-" + props.replyId,
+      style: {
+        backgroundColor: "#FFFFFF",
+        padding: "15px",
+        borderColor: "rgb(232, 232, 232)",
+        borderStyle: "solid",
+        borderWidth: "1px"
+      }
+    },
+    _react2.default.createElement("img", { src: props.avatar, className: "avatar" }),
     _react2.default.createElement(
-      "div",
-      null,
-      props.reply
-    ),
-    _react2.default.createElement(
-      "div",
+      "span",
       null,
       props.user
     ),
-    _react2.default.createElement("img", { src: props.avatar, className: "avatar" }),
     _react2.default.createElement(
       "div",
-      null,
+      { className: "timeBlock" },
       props.createdAt
+    ),
+    _react2.default.createElement(
+      "div",
+      { style: { lineHeight: "2.4rem" } },
+      props.reply
     )
   );
 };
@@ -73068,6 +73113,46 @@ module['exports'] = {
     "compressible": true
   }
 }
+
+/***/ }),
+/* 273 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var FaqBox = function FaqBox() {
+  return _react2.default.createElement(
+    "div",
+    { className: "faqBox" },
+    _react2.default.createElement(
+      "div",
+      null,
+      "Use this space to cheer the creator along, and talk to your fellow backers.",
+      _react2.default.createElement("br", null),
+      _react2.default.createElement("br", null),
+      "Have questions?",
+      _react2.default.createElement("br", null),
+      _react2.default.createElement(
+        "a",
+        { id: "link", herf: "www.google.com" },
+        "Check out the FAQ"
+      )
+    )
+  );
+};
+
+exports.default = FaqBox;
 
 /***/ })
 /******/ ]);

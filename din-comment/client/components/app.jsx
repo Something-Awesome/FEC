@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import CommentGroup from "./commentGroup.jsx";
+import FaqBox from "./faqBox.jsx";
 import $ from "jquery";
 import "faker/locale/en_US";
 
@@ -131,16 +132,17 @@ class App extends Component {
             value={this.state.inputValue}
             onChange={this.handleChange}
           />
+          <span>
+            <button
+              onClick={this.handleSubmit}
+              id="submitButton"
+              className="btn btn-link btn-lg"
+            >
+              Submit
+            </button>
+          </span>
         </form>
-        <span>
-          <button
-            onClick={this.handleSubmit}
-            id="submitButton"
-            className="btn btn-link btn-lg"
-          >
-            Submit
-          </button>
-        </span>
+        <div />
         <CommentGroup
           comments={this.state.comments}
           currentUser={this.state.currentUser}
@@ -153,6 +155,7 @@ class App extends Component {
           handleReplyChange={this.handleReplyChange}
           handleReplySubmit={this.handleReplySubmit}
         />
+        <FaqBox />
       </div>
     );
   }
