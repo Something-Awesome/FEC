@@ -40,7 +40,6 @@ class App extends Component {
       method: "GET",
       url: "/comment",
       success: data => {
-        console.log("AJAX success", data);
         this.setState({
           comments: data
         });
@@ -68,7 +67,6 @@ class App extends Component {
         avatar: this.state.currentUserAvator
       },
       success: data => {
-        console.log("AJAX success", data);
         this.loadComments();
         this.setState({
           inputValue: ""
@@ -84,6 +82,7 @@ class App extends Component {
   handleReply(e) {
     event.preventDefault();
     const clickedCommentId = e.target.parentNode.className.substring(8);
+    console.log("clicked");
     this.setState({
       replied: !this.state.replied,
       clickedCommentId: clickedCommentId

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 const Reply = props => {
-  console.log("reply propsssss", props);
   return (
     <div
       className={`reply-${props.replyId}`}
