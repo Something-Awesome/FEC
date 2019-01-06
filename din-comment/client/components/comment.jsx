@@ -22,9 +22,9 @@ const Comment = props => {
   });
 
   if (
-    (props.replied === true &&
-      JSON.stringify(comments.commentId) === props.clickedCommentId) ||
-    props.clickedCommentId === comments.commentId
+    props.replied === true &&
+    (JSON.stringify(comments.commentId) === props.clickedCommentId ||
+      props.clickedCommentId === comments.commentId)
   ) {
     showReplyBox = (
       <div>

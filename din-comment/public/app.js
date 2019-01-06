@@ -17317,7 +17317,6 @@ var App = function (_Component) {
         method: "GET",
         url: "/comment",
         success: function success(data) {
-          console.log("AJAX success", data);
           _this2.setState({
             comments: data
           });
@@ -17349,7 +17348,6 @@ var App = function (_Component) {
           avatar: this.state.currentUserAvator
         },
         success: function success(data) {
-          console.log("AJAX success", data);
           _this3.loadComments();
           _this3.setState({
             inputValue: ""
@@ -17366,6 +17364,7 @@ var App = function (_Component) {
     value: function handleReply(e) {
       event.preventDefault();
       var clickedCommentId = e.target.parentNode.className.substring(8);
+      console.log("clicked");
       this.setState({
         replied: !this.state.replied,
         clickedCommentId: clickedCommentId
@@ -41023,7 +41022,6 @@ var _comment2 = _interopRequireDefault(_comment);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var CommentGroup = function CommentGroup(props) {
-  console.log("props in comment group", props);
   var formatComments = props.comments.map(function (comment, index) {
     return _react2.default.createElement(
       "li",
@@ -41099,7 +41097,7 @@ var Comment = function Comment(props) {
     });
   });
 
-  if (props.replied === true && JSON.stringify(comments.commentId) === props.clickedCommentId || props.clickedCommentId === comments.commentId) {
+  if (props.replied === true && (JSON.stringify(comments.commentId) === props.clickedCommentId || props.clickedCommentId === comments.commentId)) {
     showReplyBox = _react2.default.createElement(
       "div",
       null,
@@ -41193,7 +41191,6 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Reply = function Reply(props) {
-  console.log("reply propsssss", props);
   return _react2.default.createElement(
     "div",
     {

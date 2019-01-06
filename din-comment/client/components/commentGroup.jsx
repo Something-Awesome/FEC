@@ -2,7 +2,6 @@ import React from "react";
 import Comment from "./comment.jsx";
 
 const CommentGroup = props => {
-  console.log("props in comment group", props);
   let formatComments = props.comments.map((comment, index) => {
     return (
       <li
