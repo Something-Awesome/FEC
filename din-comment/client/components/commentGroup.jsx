@@ -16,7 +16,7 @@ const CommentGroup = props => {
         <Comment
           comment={comment}
           currentUser={props.currentUser}
-          currentUserAvator={props.currentUserAvator}
+          currentUserAvatar={props.currentUserAvatar}
           replied={props.replied}
           replyId={props.replyId}
           replyMessage={props.replyMessage}

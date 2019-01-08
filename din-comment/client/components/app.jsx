@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import CommentGroup from "./commentGroup.jsx";
 import FaqBox from "./faqBox.jsx";
+import InputTextBox from "./inputTextBox.jsx";
 import $ from "jquery";
 import "faker/locale/en_US";
 
@@ -13,7 +14,7 @@ class App extends Component {
 
       inputValue: "",
       currentUser: faker.internet.userName(),
-      currentUserAvator: faker.internet.avatar(),
+      currentUserAvatar: faker.internet.avatar(),
 
       // reply related states
       replied: false, // use to control when to expand reply box
@@ -64,7 +65,7 @@ class App extends Component {
       data: {
         comment: this.state.inputValue,
         user: this.state.currentUser,
-        avatar: this.state.currentUserAvator
+        avatar: this.state.currentUserAvatar
       },
       success: data => {
         this.loadComments();
@@ -82,7 +83,6 @@ class App extends Component {
   handleReply(e) {
     event.preventDefault();
     const clickedCommentId = e.target.parentNode.className.substring(8);
-    console.log("clicked");
     this.setState({
       replied: !this.state.replied,
       clickedCommentId: clickedCommentId
@@ -105,7 +105,7 @@ class App extends Component {
         commentId: this.state.clickedCommentId,
         reply: this.state.replyMessage,
         user: this.state.currentUser,
-        avatar: this.state.currentUserAvator
+        avatar: this.state.currentUserAvatar
       },
       success: data => {
         console.log("AJAX REPLY success", data);
@@ -125,27 +125,16 @@ class App extends Component {
   render() {
     return (
       <div className="wrapper">
-        <form>
-          <textarea
-            className="inputCommentBox"
-            value={this.state.inputValue}
-            onChange={this.handleChange}
-          />
-          <span>
-            <button
-              onClick={this.handleSubmit}
-              id="submitButton"
-              className="btn btn-link btn-lg"
-            >
-              Submit
-            </button>
-          </span>
-        </form>
+        <InputTextBox
+          inputValue={this.state.inputValue}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+        />
         <div />
         <CommentGroup
           comments={this.state.comments}
           currentUser={this.state.currentUser}
-          currentUserAvator={this.state.currentUserAvator}
+          currentUserAvatar={this.state.currentUserAvatar}
           replied={this.state.replied}
           replyId={this.state.replyId}
           replyMessage={this.state.replyMessage}
