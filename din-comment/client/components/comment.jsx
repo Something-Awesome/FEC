@@ -13,9 +13,7 @@ const Comment = props => {
         reply={reply.reply}
         user={reply.user}
         replyId={reply.replyId}
-        avatar={
-          reply.avatar === undefined ? props.currentUserAvator : reply.avatar
-        }
+        avatar={reply.avatar}
         createdAt={moment(reply.createdAt).fromNow()}
       />
     );

@@ -16996,7 +16996,7 @@ module.exports = g;
 /* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var mersenne = __webpack_require__(154);
+var mersenne = __webpack_require__(155);
 
 /**
  *
@@ -17253,15 +17253,19 @@ var _commentGroup = __webpack_require__(145);
 
 var _commentGroup2 = _interopRequireDefault(_commentGroup);
 
-var _faqBox = __webpack_require__(273);
+var _faqBox = __webpack_require__(150);
 
 var _faqBox2 = _interopRequireDefault(_faqBox);
 
-var _jquery = __webpack_require__(150);
+var _inputTextBox = __webpack_require__(274);
+
+var _inputTextBox2 = _interopRequireDefault(_inputTextBox);
+
+var _jquery = __webpack_require__(151);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-__webpack_require__(151);
+__webpack_require__(152);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17284,7 +17288,7 @@ var App = function (_Component) {
 
       inputValue: "",
       currentUser: faker.internet.userName(),
-      currentUserAvator: faker.internet.avatar(),
+      currentUserAvatar: faker.internet.avatar(),
 
       // reply related states
       replied: false, // use to control when to expand reply box
@@ -17345,7 +17349,7 @@ var App = function (_Component) {
         data: {
           comment: this.state.inputValue,
           user: this.state.currentUser,
-          avatar: this.state.currentUserAvator
+          avatar: this.state.currentUserAvatar
         },
         success: function success(data) {
           _this3.loadComments();
@@ -17364,7 +17368,6 @@ var App = function (_Component) {
     value: function handleReply(e) {
       event.preventDefault();
       var clickedCommentId = e.target.parentNode.className.substring(8);
-      console.log("clicked");
       this.setState({
         replied: !this.state.replied,
         clickedCommentId: clickedCommentId
@@ -17391,7 +17394,7 @@ var App = function (_Component) {
           commentId: this.state.clickedCommentId,
           reply: this.state.replyMessage,
           user: this.state.currentUser,
-          avatar: this.state.currentUserAvator
+          avatar: this.state.currentUserAvatar
         },
         success: function success(data) {
           console.log("AJAX REPLY success", data);
@@ -17413,33 +17416,16 @@ var App = function (_Component) {
       return _react2.default.createElement(
         "div",
         { className: "wrapper" },
-        _react2.default.createElement(
-          "form",
-          null,
-          _react2.default.createElement("textarea", {
-            className: "inputCommentBox",
-            value: this.state.inputValue,
-            onChange: this.handleChange
-          }),
-          _react2.default.createElement(
-            "span",
-            null,
-            _react2.default.createElement(
-              "button",
-              {
-                onClick: this.handleSubmit,
-                id: "submitButton",
-                className: "btn btn-link btn-lg"
-              },
-              "Submit"
-            )
-          )
-        ),
+        _react2.default.createElement(_inputTextBox2.default, {
+          inputValue: this.state.inputValue,
+          handleChange: this.handleChange,
+          handleSubmit: this.handleSubmit
+        }),
         _react2.default.createElement("div", null),
         _react2.default.createElement(_commentGroup2.default, {
           comments: this.state.comments,
           currentUser: this.state.currentUser,
-          currentUserAvator: this.state.currentUserAvator,
+          currentUserAvatar: this.state.currentUserAvatar,
           replied: this.state.replied,
           replyId: this.state.replyId,
           replyMessage: this.state.replyMessage,
@@ -41037,7 +41023,7 @@ var CommentGroup = function CommentGroup(props) {
       _react2.default.createElement(_comment2.default, {
         comment: comment,
         currentUser: props.currentUser,
-        currentUserAvator: props.currentUserAvator,
+        currentUserAvatar: props.currentUserAvatar,
         replied: props.replied,
         replyId: props.replyId,
         replyMessage: props.replyMessage,
@@ -41092,7 +41078,7 @@ var Comment = function Comment(props) {
       reply: reply.reply,
       user: reply.user,
       replyId: reply.replyId,
-      avatar: reply.avatar === undefined ? props.currentUserAvator : reply.avatar,
+      avatar: reply.avatar,
       createdAt: (0, _moment2.default)(reply.createdAt).fromNow()
     });
   });
@@ -41524,6 +41510,46 @@ webpackContext.id = 149;
 
 /***/ }),
 /* 150 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var FaqBox = function FaqBox() {
+  return _react2.default.createElement(
+    "div",
+    { className: "faqBox" },
+    _react2.default.createElement(
+      "div",
+      null,
+      "Use this space to cheer the creator along, and talk to your fellow backers.",
+      _react2.default.createElement("br", null),
+      _react2.default.createElement("br", null),
+      "Have questions?",
+      _react2.default.createElement("br", null),
+      _react2.default.createElement(
+        "a",
+        { id: "link", herf: "www.google.com" },
+        "Check out the FAQ"
+      )
+    )
+  );
+};
+
+exports.default = FaqBox;
+
+/***/ }),
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -51894,18 +51920,18 @@ return jQuery;
 
 
 /***/ }),
-/* 151 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Faker = __webpack_require__(152);
+var Faker = __webpack_require__(153);
 var faker = new Faker({ locale: 'en_US', localeFallback: 'en' });
-faker.locales['en_US'] = __webpack_require__(171);
-faker.locales['en'] = __webpack_require__(180);
+faker.locales['en_US'] = __webpack_require__(172);
+faker.locales['en'] = __webpack_require__(181);
 module['exports'] = faker;
 
 
 /***/ }),
-/* 152 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -51957,52 +51983,52 @@ function Faker (opts) {
       return obj;
   }
 
-  var Fake = __webpack_require__(153);
+  var Fake = __webpack_require__(154);
   self.fake = new Fake(self).fake;
 
   var Random = __webpack_require__(131);
   self.random = bindAll(new Random(self));
 
-  var Helpers = __webpack_require__(155);
+  var Helpers = __webpack_require__(156);
   self.helpers = new Helpers(self);
 
-  var Name = __webpack_require__(156);
+  var Name = __webpack_require__(157);
   self.name = bindAll(new Name(self));
 
-  var Address = __webpack_require__(157);
+  var Address = __webpack_require__(158);
   self.address = bindAll(new Address(self));
 
-  var Company = __webpack_require__(158);
+  var Company = __webpack_require__(159);
   self.company = bindAll(new Company(self));
 
-  var Finance = __webpack_require__(159);
+  var Finance = __webpack_require__(160);
   self.finance = bindAll(new Finance(self));
 
-  var Image = __webpack_require__(161);
+  var Image = __webpack_require__(162);
   self.image = bindAll(new Image(self));
 
-  var Lorem = __webpack_require__(162);
+  var Lorem = __webpack_require__(163);
   self.lorem = bindAll(new Lorem(self));
 
-  var Hacker = __webpack_require__(163);
+  var Hacker = __webpack_require__(164);
   self.hacker = bindAll(new Hacker(self));
 
-  var Internet = __webpack_require__(164);
+  var Internet = __webpack_require__(165);
   self.internet = bindAll(new Internet(self));
 
-  var Database = __webpack_require__(166);
+  var Database = __webpack_require__(167);
   self.database = bindAll(new Database(self));
 
-  var Phone = __webpack_require__(167);
+  var Phone = __webpack_require__(168);
   self.phone = bindAll(new Phone(self));
 
-  var _Date = __webpack_require__(168);
+  var _Date = __webpack_require__(169);
   self.date = bindAll(new _Date(self));
 
-  var Commerce = __webpack_require__(169);
+  var Commerce = __webpack_require__(170);
   self.commerce = bindAll(new Commerce(self));
 
-  var System = __webpack_require__(170);
+  var System = __webpack_require__(171);
   self.system = bindAll(new System(self));
 
   var _definitions = {
@@ -52061,7 +52087,7 @@ module['exports'] = Faker;
 
 
 /***/ }),
-/* 153 */
+/* 154 */
 /***/ (function(module, exports) {
 
 /*
@@ -52174,7 +52200,7 @@ function Fake (faker) {
 module['exports'] = Fake;
 
 /***/ }),
-/* 154 */
+/* 155 */
 /***/ (function(module, exports) {
 
 // this program is a JavaScript version of Mersenne Twister, with concealment and encapsulation in class,
@@ -52466,7 +52492,7 @@ exports.seed_array = function(A) {
 
 
 /***/ }),
-/* 155 */
+/* 156 */
 /***/ (function(module, exports) {
 
 /**
@@ -52733,7 +52759,7 @@ module['exports'] = Helpers;
 
 
 /***/ }),
-/* 156 */
+/* 157 */
 /***/ (function(module, exports) {
 
 /**
@@ -52916,7 +52942,7 @@ module['exports'] = Name;
 
 
 /***/ }),
-/* 157 */
+/* 158 */
 /***/ (function(module, exports) {
 
 /**
@@ -53148,7 +53174,7 @@ module.exports = Address;
 
 
 /***/ }),
-/* 158 */
+/* 159 */
 /***/ (function(module, exports) {
 
 /**
@@ -53277,14 +53303,14 @@ var Company = function (faker) {
 module['exports'] = Company;
 
 /***/ }),
-/* 159 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * @namespace faker.finance
  */
 var Finance = function (faker) {
-  var ibanLib = __webpack_require__(160);
+  var ibanLib = __webpack_require__(161);
   var Helpers = faker.helpers,
       self = this;
 
@@ -53502,7 +53528,7 @@ module['exports'] = Finance;
 
 
 /***/ }),
-/* 160 */
+/* 161 */
 /***/ (function(module, exports) {
 
 module["exports"] = {
@@ -54643,7 +54669,7 @@ module["exports"] = {
 }
 
 /***/ }),
-/* 161 */
+/* 162 */
 /***/ (function(module, exports) {
 
 /**
@@ -54861,7 +54887,7 @@ var Image = function (faker) {
 module["exports"] = Image;
 
 /***/ }),
-/* 162 */
+/* 163 */
 /***/ (function(module, exports) {
 
 
@@ -55005,7 +55031,7 @@ module["exports"] = Lorem;
 
 
 /***/ }),
-/* 163 */
+/* 164 */
 /***/ (function(module, exports) {
 
 /**
@@ -55095,10 +55121,10 @@ var Hacker = function (faker) {
 module['exports'] = Hacker;
 
 /***/ }),
-/* 164 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var random_ua = __webpack_require__(165);
+var random_ua = __webpack_require__(166);
 
 /**
  *
@@ -55519,7 +55545,7 @@ module["exports"] = Internet;
 
 
 /***/ }),
-/* 165 */
+/* 166 */
 /***/ (function(module, exports) {
 
 /*
@@ -55734,7 +55760,7 @@ exports.generate = function generate() {
 
 
 /***/ }),
-/* 166 */
+/* 167 */
 /***/ (function(module, exports) {
 
 /**
@@ -55804,7 +55830,7 @@ module["exports"] = Database;
 
 
 /***/ }),
-/* 167 */
+/* 168 */
 /***/ (function(module, exports) {
 
 /**
@@ -55853,7 +55879,7 @@ var Phone = function (faker) {
 module['exports'] = Phone;
 
 /***/ }),
-/* 168 */
+/* 169 */
 /***/ (function(module, exports) {
 
 /**
@@ -55991,7 +56017,7 @@ var _Date = function (faker) {
 module['exports'] = _Date;
 
 /***/ }),
-/* 169 */
+/* 170 */
 /***/ (function(module, exports) {
 
 /**
@@ -56116,7 +56142,7 @@ module['exports'] = Commerce;
 
 
 /***/ }),
-/* 170 */
+/* 171 */
 /***/ (function(module, exports) {
 
 // generates fake data for many computer systems properties
@@ -56282,28 +56308,28 @@ module['exports'] = System;
 
 
 /***/ }),
-/* 171 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var en_US = {};
 module['exports'] = en_US;
 en_US.title = "United States (English)";
-en_US.internet = __webpack_require__(172);
-en_US.address = __webpack_require__(174);
-en_US.phone_number = __webpack_require__(177);
-
-
-/***/ }),
-/* 172 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var internet = {};
-module['exports'] = internet;
-internet.domain_suffix = __webpack_require__(173);
+en_US.internet = __webpack_require__(173);
+en_US.address = __webpack_require__(175);
+en_US.phone_number = __webpack_require__(178);
 
 
 /***/ }),
 /* 173 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var internet = {};
+module['exports'] = internet;
+internet.domain_suffix = __webpack_require__(174);
+
+
+/***/ }),
+/* 174 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -56318,17 +56344,17 @@ module["exports"] = [
 
 
 /***/ }),
-/* 174 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var address = {};
 module['exports'] = address;
-address.default_country = __webpack_require__(175);
-address.postcode_by_state = __webpack_require__(176);
+address.default_country = __webpack_require__(176);
+address.postcode_by_state = __webpack_require__(177);
 
 
 /***/ }),
-/* 175 */
+/* 176 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -56339,7 +56365,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 176 */
+/* 177 */
 /***/ (function(module, exports) {
 
 module["exports"] = {
@@ -56399,304 +56425,13 @@ module["exports"] = {
 
 
 /***/ }),
-/* 177 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var phone_number = {};
 module['exports'] = phone_number;
-phone_number.area_code = __webpack_require__(178);
-phone_number.exchange_code = __webpack_require__(179);
-
-
-/***/ }),
-/* 178 */
-/***/ (function(module, exports) {
-
-module["exports"] = [
-  "201",
-  "202",
-  "203",
-  "205",
-  "206",
-  "207",
-  "208",
-  "209",
-  "210",
-  "212",
-  "213",
-  "214",
-  "215",
-  "216",
-  "217",
-  "218",
-  "219",
-  "224",
-  "225",
-  "227",
-  "228",
-  "229",
-  "231",
-  "234",
-  "239",
-  "240",
-  "248",
-  "251",
-  "252",
-  "253",
-  "254",
-  "256",
-  "260",
-  "262",
-  "267",
-  "269",
-  "270",
-  "276",
-  "281",
-  "283",
-  "301",
-  "302",
-  "303",
-  "304",
-  "305",
-  "307",
-  "308",
-  "309",
-  "310",
-  "312",
-  "313",
-  "314",
-  "315",
-  "316",
-  "317",
-  "318",
-  "319",
-  "320",
-  "321",
-  "323",
-  "330",
-  "331",
-  "334",
-  "336",
-  "337",
-  "339",
-  "347",
-  "351",
-  "352",
-  "360",
-  "361",
-  "386",
-  "401",
-  "402",
-  "404",
-  "405",
-  "406",
-  "407",
-  "408",
-  "409",
-  "410",
-  "412",
-  "413",
-  "414",
-  "415",
-  "417",
-  "419",
-  "423",
-  "424",
-  "425",
-  "434",
-  "435",
-  "440",
-  "443",
-  "445",
-  "464",
-  "469",
-  "470",
-  "475",
-  "478",
-  "479",
-  "480",
-  "484",
-  "501",
-  "502",
-  "503",
-  "504",
-  "505",
-  "507",
-  "508",
-  "509",
-  "510",
-  "512",
-  "513",
-  "515",
-  "516",
-  "517",
-  "518",
-  "520",
-  "530",
-  "540",
-  "541",
-  "551",
-  "557",
-  "559",
-  "561",
-  "562",
-  "563",
-  "564",
-  "567",
-  "570",
-  "571",
-  "573",
-  "574",
-  "580",
-  "585",
-  "586",
-  "601",
-  "602",
-  "603",
-  "605",
-  "606",
-  "607",
-  "608",
-  "609",
-  "610",
-  "612",
-  "614",
-  "615",
-  "616",
-  "617",
-  "618",
-  "619",
-  "620",
-  "623",
-  "626",
-  "630",
-  "631",
-  "636",
-  "641",
-  "646",
-  "650",
-  "651",
-  "660",
-  "661",
-  "662",
-  "667",
-  "678",
-  "682",
-  "701",
-  "702",
-  "703",
-  "704",
-  "706",
-  "707",
-  "708",
-  "712",
-  "713",
-  "714",
-  "715",
-  "716",
-  "717",
-  "718",
-  "719",
-  "720",
-  "724",
-  "727",
-  "731",
-  "732",
-  "734",
-  "737",
-  "740",
-  "754",
-  "757",
-  "760",
-  "763",
-  "765",
-  "770",
-  "772",
-  "773",
-  "774",
-  "775",
-  "781",
-  "785",
-  "786",
-  "801",
-  "802",
-  "803",
-  "804",
-  "805",
-  "806",
-  "808",
-  "810",
-  "812",
-  "813",
-  "814",
-  "815",
-  "816",
-  "817",
-  "818",
-  "828",
-  "830",
-  "831",
-  "832",
-  "835",
-  "843",
-  "845",
-  "847",
-  "848",
-  "850",
-  "856",
-  "857",
-  "858",
-  "859",
-  "860",
-  "862",
-  "863",
-  "864",
-  "865",
-  "870",
-  "872",
-  "878",
-  "901",
-  "903",
-  "904",
-  "906",
-  "907",
-  "908",
-  "909",
-  "910",
-  "912",
-  "913",
-  "914",
-  "915",
-  "916",
-  "917",
-  "918",
-  "919",
-  "920",
-  "925",
-  "928",
-  "931",
-  "936",
-  "937",
-  "940",
-  "941",
-  "947",
-  "949",
-  "952",
-  "954",
-  "956",
-  "959",
-  "970",
-  "971",
-  "972",
-  "973",
-  "975",
-  "978",
-  "979",
-  "980",
-  "984",
-  "985",
-  "989"
-];
+phone_number.area_code = __webpack_require__(179);
+phone_number.exchange_code = __webpack_require__(180);
 
 
 /***/ }),
@@ -56992,58 +56727,349 @@ module["exports"] = [
 
 /***/ }),
 /* 180 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-var en = {};
-module['exports'] = en;
-en.title = "English";
-en.separator = " & ";
-en.address = __webpack_require__(181);
-en.credit_card = __webpack_require__(199);
-en.company = __webpack_require__(210);
-en.internet = __webpack_require__(219);
-en.database = __webpack_require__(224);
-en.lorem = __webpack_require__(229);
-en.name = __webpack_require__(232);
-en.phone_number = __webpack_require__(239);
-en.cell_phone = __webpack_require__(241);
-en.business = __webpack_require__(243);
-en.commerce = __webpack_require__(247);
-en.team = __webpack_require__(251);
-en.hacker = __webpack_require__(254);
-en.app = __webpack_require__(260);
-en.finance = __webpack_require__(264);
-en.date = __webpack_require__(268);
-en.system = __webpack_require__(271);
+module["exports"] = [
+  "201",
+  "202",
+  "203",
+  "205",
+  "206",
+  "207",
+  "208",
+  "209",
+  "210",
+  "212",
+  "213",
+  "214",
+  "215",
+  "216",
+  "217",
+  "218",
+  "219",
+  "224",
+  "225",
+  "227",
+  "228",
+  "229",
+  "231",
+  "234",
+  "239",
+  "240",
+  "248",
+  "251",
+  "252",
+  "253",
+  "254",
+  "256",
+  "260",
+  "262",
+  "267",
+  "269",
+  "270",
+  "276",
+  "281",
+  "283",
+  "301",
+  "302",
+  "303",
+  "304",
+  "305",
+  "307",
+  "308",
+  "309",
+  "310",
+  "312",
+  "313",
+  "314",
+  "315",
+  "316",
+  "317",
+  "318",
+  "319",
+  "320",
+  "321",
+  "323",
+  "330",
+  "331",
+  "334",
+  "336",
+  "337",
+  "339",
+  "347",
+  "351",
+  "352",
+  "360",
+  "361",
+  "386",
+  "401",
+  "402",
+  "404",
+  "405",
+  "406",
+  "407",
+  "408",
+  "409",
+  "410",
+  "412",
+  "413",
+  "414",
+  "415",
+  "417",
+  "419",
+  "423",
+  "424",
+  "425",
+  "434",
+  "435",
+  "440",
+  "443",
+  "445",
+  "464",
+  "469",
+  "470",
+  "475",
+  "478",
+  "479",
+  "480",
+  "484",
+  "501",
+  "502",
+  "503",
+  "504",
+  "505",
+  "507",
+  "508",
+  "509",
+  "510",
+  "512",
+  "513",
+  "515",
+  "516",
+  "517",
+  "518",
+  "520",
+  "530",
+  "540",
+  "541",
+  "551",
+  "557",
+  "559",
+  "561",
+  "562",
+  "563",
+  "564",
+  "567",
+  "570",
+  "571",
+  "573",
+  "574",
+  "580",
+  "585",
+  "586",
+  "601",
+  "602",
+  "603",
+  "605",
+  "606",
+  "607",
+  "608",
+  "609",
+  "610",
+  "612",
+  "614",
+  "615",
+  "616",
+  "617",
+  "618",
+  "619",
+  "620",
+  "623",
+  "626",
+  "630",
+  "631",
+  "636",
+  "641",
+  "646",
+  "650",
+  "651",
+  "660",
+  "661",
+  "662",
+  "667",
+  "678",
+  "682",
+  "701",
+  "702",
+  "703",
+  "704",
+  "706",
+  "707",
+  "708",
+  "712",
+  "713",
+  "714",
+  "715",
+  "716",
+  "717",
+  "718",
+  "719",
+  "720",
+  "724",
+  "727",
+  "731",
+  "732",
+  "734",
+  "737",
+  "740",
+  "754",
+  "757",
+  "760",
+  "763",
+  "765",
+  "770",
+  "772",
+  "773",
+  "774",
+  "775",
+  "781",
+  "785",
+  "786",
+  "801",
+  "802",
+  "803",
+  "804",
+  "805",
+  "806",
+  "808",
+  "810",
+  "812",
+  "813",
+  "814",
+  "815",
+  "816",
+  "817",
+  "818",
+  "828",
+  "830",
+  "831",
+  "832",
+  "835",
+  "843",
+  "845",
+  "847",
+  "848",
+  "850",
+  "856",
+  "857",
+  "858",
+  "859",
+  "860",
+  "862",
+  "863",
+  "864",
+  "865",
+  "870",
+  "872",
+  "878",
+  "901",
+  "903",
+  "904",
+  "906",
+  "907",
+  "908",
+  "909",
+  "910",
+  "912",
+  "913",
+  "914",
+  "915",
+  "916",
+  "917",
+  "918",
+  "919",
+  "920",
+  "925",
+  "928",
+  "931",
+  "936",
+  "937",
+  "940",
+  "941",
+  "947",
+  "949",
+  "952",
+  "954",
+  "956",
+  "959",
+  "970",
+  "971",
+  "972",
+  "973",
+  "975",
+  "978",
+  "979",
+  "980",
+  "984",
+  "985",
+  "989"
+];
 
 
 /***/ }),
 /* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var address = {};
-module['exports'] = address;
-address.city_prefix = __webpack_require__(182);
-address.city_suffix = __webpack_require__(183);
-address.county = __webpack_require__(184);
-address.country = __webpack_require__(185);
-address.country_code = __webpack_require__(186);
-address.building_number = __webpack_require__(187);
-address.street_suffix = __webpack_require__(188);
-address.secondary_address = __webpack_require__(189);
-address.postcode = __webpack_require__(190);
-address.postcode_by_state = __webpack_require__(191);
-address.state = __webpack_require__(192);
-address.state_abbr = __webpack_require__(193);
-address.time_zone = __webpack_require__(194);
-address.city = __webpack_require__(195);
-address.street_name = __webpack_require__(196);
-address.street_address = __webpack_require__(197);
-address.default_country = __webpack_require__(198);
+var en = {};
+module['exports'] = en;
+en.title = "English";
+en.separator = " & ";
+en.address = __webpack_require__(182);
+en.credit_card = __webpack_require__(200);
+en.company = __webpack_require__(211);
+en.internet = __webpack_require__(220);
+en.database = __webpack_require__(225);
+en.lorem = __webpack_require__(230);
+en.name = __webpack_require__(233);
+en.phone_number = __webpack_require__(240);
+en.cell_phone = __webpack_require__(242);
+en.business = __webpack_require__(244);
+en.commerce = __webpack_require__(248);
+en.team = __webpack_require__(252);
+en.hacker = __webpack_require__(255);
+en.app = __webpack_require__(261);
+en.finance = __webpack_require__(265);
+en.date = __webpack_require__(269);
+en.system = __webpack_require__(272);
 
 
 /***/ }),
 /* 182 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var address = {};
+module['exports'] = address;
+address.city_prefix = __webpack_require__(183);
+address.city_suffix = __webpack_require__(184);
+address.county = __webpack_require__(185);
+address.country = __webpack_require__(186);
+address.country_code = __webpack_require__(187);
+address.building_number = __webpack_require__(188);
+address.street_suffix = __webpack_require__(189);
+address.secondary_address = __webpack_require__(190);
+address.postcode = __webpack_require__(191);
+address.postcode_by_state = __webpack_require__(192);
+address.state = __webpack_require__(193);
+address.state_abbr = __webpack_require__(194);
+address.time_zone = __webpack_require__(195);
+address.city = __webpack_require__(196);
+address.street_name = __webpack_require__(197);
+address.street_address = __webpack_require__(198);
+address.default_country = __webpack_require__(199);
+
+
+/***/ }),
+/* 183 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -57058,7 +57084,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 183 */
+/* 184 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -57085,7 +57111,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 184 */
+/* 185 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -57099,7 +57125,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 185 */
+/* 186 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -57351,7 +57377,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 186 */
+/* 187 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -57609,7 +57635,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 187 */
+/* 188 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -57620,7 +57646,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 188 */
+/* 189 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -57853,22 +57879,12 @@ module["exports"] = [
 
 
 /***/ }),
-/* 189 */
+/* 190 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
   "Apt. ###",
   "Suite ###"
-];
-
-
-/***/ }),
-/* 190 */
-/***/ (function(module, exports) {
-
-module["exports"] = [
-  "#####",
-  "#####-####"
 ];
 
 
@@ -57884,6 +57900,16 @@ module["exports"] = [
 
 /***/ }),
 /* 192 */
+/***/ (function(module, exports) {
+
+module["exports"] = [
+  "#####",
+  "#####-####"
+];
+
+
+/***/ }),
+/* 193 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -57941,7 +57967,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 193 */
+/* 194 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -57999,7 +58025,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 194 */
+/* 195 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58150,7 +58176,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 195 */
+/* 196 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58162,7 +58188,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 196 */
+/* 197 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58172,7 +58198,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 197 */
+/* 198 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58181,7 +58207,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 198 */
+/* 199 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58190,25 +58216,25 @@ module["exports"] = [
 
 
 /***/ }),
-/* 199 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var credit_card = {};
 module['exports'] = credit_card;
-credit_card.visa = __webpack_require__(200);
-credit_card.mastercard = __webpack_require__(201);
-credit_card.discover = __webpack_require__(202);
-credit_card.american_express = __webpack_require__(203);
-credit_card.diners_club = __webpack_require__(204);
-credit_card.jcb = __webpack_require__(205);
-credit_card.switch = __webpack_require__(206);
-credit_card.solo = __webpack_require__(207);
-credit_card.maestro = __webpack_require__(208);
-credit_card.laser = __webpack_require__(209);
+credit_card.visa = __webpack_require__(201);
+credit_card.mastercard = __webpack_require__(202);
+credit_card.discover = __webpack_require__(203);
+credit_card.american_express = __webpack_require__(204);
+credit_card.diners_club = __webpack_require__(205);
+credit_card.jcb = __webpack_require__(206);
+credit_card.switch = __webpack_require__(207);
+credit_card.solo = __webpack_require__(208);
+credit_card.maestro = __webpack_require__(209);
+credit_card.laser = __webpack_require__(210);
 
 
 /***/ }),
-/* 200 */
+/* 201 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58218,7 +58244,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 201 */
+/* 202 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58228,7 +58254,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 202 */
+/* 203 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58242,7 +58268,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 203 */
+/* 204 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58252,7 +58278,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 204 */
+/* 205 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58262,7 +58288,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 205 */
+/* 206 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58273,7 +58299,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 206 */
+/* 207 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58284,7 +58310,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 207 */
+/* 208 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58295,7 +58321,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 208 */
+/* 209 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58306,7 +58332,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 209 */
+/* 210 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58322,23 +58348,23 @@ module["exports"] = [
 
 
 /***/ }),
-/* 210 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var company = {};
 module['exports'] = company;
-company.suffix = __webpack_require__(211);
-company.adjective = __webpack_require__(212);
-company.descriptor = __webpack_require__(213);
-company.noun = __webpack_require__(214);
-company.bs_verb = __webpack_require__(215);
-company.bs_adjective = __webpack_require__(216);
-company.bs_noun = __webpack_require__(217);
-company.name = __webpack_require__(218);
+company.suffix = __webpack_require__(212);
+company.adjective = __webpack_require__(213);
+company.descriptor = __webpack_require__(214);
+company.noun = __webpack_require__(215);
+company.bs_verb = __webpack_require__(216);
+company.bs_adjective = __webpack_require__(217);
+company.bs_noun = __webpack_require__(218);
+company.name = __webpack_require__(219);
 
 
 /***/ }),
-/* 211 */
+/* 212 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58350,7 +58376,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 212 */
+/* 213 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58458,7 +58484,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 213 */
+/* 214 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58567,7 +58593,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 214 */
+/* 215 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58679,7 +58705,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 215 */
+/* 216 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58747,7 +58773,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 216 */
+/* 217 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58820,7 +58846,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 217 */
+/* 218 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58872,7 +58898,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 218 */
+/* 219 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58883,19 +58909,19 @@ module["exports"] = [
 
 
 /***/ }),
-/* 219 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var internet = {};
 module['exports'] = internet;
-internet.free_email = __webpack_require__(220);
-internet.example_email = __webpack_require__(221);
-internet.domain_suffix = __webpack_require__(222);
-internet.avatar_uri = __webpack_require__(223);
+internet.free_email = __webpack_require__(221);
+internet.example_email = __webpack_require__(222);
+internet.domain_suffix = __webpack_require__(223);
+internet.avatar_uri = __webpack_require__(224);
 
 
 /***/ }),
-/* 220 */
+/* 221 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58906,7 +58932,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 221 */
+/* 222 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58917,7 +58943,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 222 */
+/* 223 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -58931,7 +58957,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 223 */
+/* 224 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -60196,18 +60222,18 @@ module["exports"] = [
 
 
 /***/ }),
-/* 224 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var database = {};
 module['exports'] = database;
-database.collation = __webpack_require__(225);
-database.column = __webpack_require__(226);
-database.engine = __webpack_require__(227);
-database.type = __webpack_require__(228);
+database.collation = __webpack_require__(226);
+database.column = __webpack_require__(227);
+database.engine = __webpack_require__(228);
+database.type = __webpack_require__(229);
 
 /***/ }),
-/* 225 */
+/* 226 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -60222,7 +60248,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 226 */
+/* 227 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -60244,7 +60270,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 227 */
+/* 228 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -60258,7 +60284,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 228 */
+/* 229 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -60290,17 +60316,17 @@ module["exports"] = [
 
 
 /***/ }),
-/* 229 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var lorem = {};
 module['exports'] = lorem;
-lorem.words = __webpack_require__(230);
-lorem.supplemental = __webpack_require__(231);
+lorem.words = __webpack_require__(231);
+lorem.supplemental = __webpack_require__(232);
 
 
 /***/ }),
-/* 230 */
+/* 231 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -60557,7 +60583,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 231 */
+/* 232 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -61405,21 +61431,21 @@ module["exports"] = [
 
 
 /***/ }),
-/* 232 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var name = {};
 module['exports'] = name;
-name.first_name = __webpack_require__(233);
-name.last_name = __webpack_require__(234);
-name.prefix = __webpack_require__(235);
-name.suffix = __webpack_require__(236);
-name.title = __webpack_require__(237);
-name.name = __webpack_require__(238);
+name.first_name = __webpack_require__(234);
+name.last_name = __webpack_require__(235);
+name.prefix = __webpack_require__(236);
+name.suffix = __webpack_require__(237);
+name.title = __webpack_require__(238);
+name.name = __webpack_require__(239);
 
 
 /***/ }),
-/* 233 */
+/* 234 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -64434,7 +64460,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 234 */
+/* 235 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -64916,7 +64942,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 235 */
+/* 236 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -64929,7 +64955,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 236 */
+/* 237 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -64948,7 +64974,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 237 */
+/* 238 */
 /***/ (function(module, exports) {
 
 module["exports"] = {
@@ -65046,7 +65072,7 @@ module["exports"] = {
 
 
 /***/ }),
-/* 238 */
+/* 239 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -65060,16 +65086,16 @@ module["exports"] = [
 
 
 /***/ }),
-/* 239 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var phone_number = {};
 module['exports'] = phone_number;
-phone_number.formats = __webpack_require__(240);
+phone_number.formats = __webpack_require__(241);
 
 
 /***/ }),
-/* 240 */
+/* 241 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -65097,16 +65123,16 @@ module["exports"] = [
 
 
 /***/ }),
-/* 241 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var cell_phone = {};
 module['exports'] = cell_phone;
-cell_phone.formats = __webpack_require__(242);
+cell_phone.formats = __webpack_require__(243);
 
 
 /***/ }),
-/* 242 */
+/* 243 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -65118,18 +65144,18 @@ module["exports"] = [
 
 
 /***/ }),
-/* 243 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var business = {};
 module['exports'] = business;
-business.credit_card_numbers = __webpack_require__(244);
-business.credit_card_expiry_dates = __webpack_require__(245);
-business.credit_card_types = __webpack_require__(246);
+business.credit_card_numbers = __webpack_require__(245);
+business.credit_card_expiry_dates = __webpack_require__(246);
+business.credit_card_types = __webpack_require__(247);
 
 
 /***/ }),
-/* 244 */
+/* 245 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -65141,7 +65167,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 245 */
+/* 246 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -65153,7 +65179,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 246 */
+/* 247 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -65165,18 +65191,18 @@ module["exports"] = [
 
 
 /***/ }),
-/* 247 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var commerce = {};
 module['exports'] = commerce;
-commerce.color = __webpack_require__(248);
-commerce.department = __webpack_require__(249);
-commerce.product_name = __webpack_require__(250);
+commerce.color = __webpack_require__(249);
+commerce.department = __webpack_require__(250);
+commerce.product_name = __webpack_require__(251);
 
 
 /***/ }),
-/* 248 */
+/* 249 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -65215,7 +65241,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 249 */
+/* 250 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -65245,7 +65271,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 250 */
+/* 251 */
 /***/ (function(module, exports) {
 
 module["exports"] = {
@@ -65311,17 +65337,17 @@ module["exports"] = {
 
 
 /***/ }),
-/* 251 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var team = {};
 module['exports'] = team;
-team.creature = __webpack_require__(252);
-team.name = __webpack_require__(253);
+team.creature = __webpack_require__(253);
+team.name = __webpack_require__(254);
 
 
 /***/ }),
-/* 252 */
+/* 253 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -65396,7 +65422,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 253 */
+/* 254 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -65405,20 +65431,20 @@ module["exports"] = [
 
 
 /***/ }),
-/* 254 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var hacker = {};
 module['exports'] = hacker;
-hacker.abbreviation = __webpack_require__(255);
-hacker.adjective = __webpack_require__(256);
-hacker.noun = __webpack_require__(257);
-hacker.verb = __webpack_require__(258);
-hacker.ingverb = __webpack_require__(259);
+hacker.abbreviation = __webpack_require__(256);
+hacker.adjective = __webpack_require__(257);
+hacker.noun = __webpack_require__(258);
+hacker.verb = __webpack_require__(259);
+hacker.ingverb = __webpack_require__(260);
 
 
 /***/ }),
-/* 255 */
+/* 256 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -65455,7 +65481,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 256 */
+/* 257 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -65481,7 +65507,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 257 */
+/* 258 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -65513,7 +65539,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 258 */
+/* 259 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -65539,7 +65565,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 259 */
+/* 260 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -65563,18 +65589,18 @@ module["exports"] = [
 
 
 /***/ }),
-/* 260 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var app = {};
 module['exports'] = app;
-app.name = __webpack_require__(261);
-app.version = __webpack_require__(262);
-app.author = __webpack_require__(263);
+app.name = __webpack_require__(262);
+app.version = __webpack_require__(263);
+app.author = __webpack_require__(264);
 
 
 /***/ }),
-/* 261 */
+/* 262 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -65644,7 +65670,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 262 */
+/* 263 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -65657,7 +65683,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 263 */
+/* 264 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -65667,18 +65693,18 @@ module["exports"] = [
 
 
 /***/ }),
-/* 264 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var finance = {};
 module['exports'] = finance;
-finance.account_type = __webpack_require__(265);
-finance.transaction_type = __webpack_require__(266);
-finance.currency = __webpack_require__(267);
+finance.account_type = __webpack_require__(266);
+finance.transaction_type = __webpack_require__(267);
+finance.currency = __webpack_require__(268);
 
 
 /***/ }),
-/* 265 */
+/* 266 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -65694,7 +65720,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 266 */
+/* 267 */
 /***/ (function(module, exports) {
 
 module["exports"] = [
@@ -65706,7 +65732,7 @@ module["exports"] = [
 
 
 /***/ }),
-/* 267 */
+/* 268 */
 /***/ (function(module, exports) {
 
 module["exports"] = {
@@ -66390,17 +66416,17 @@ module["exports"] = {
 
 
 /***/ }),
-/* 268 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var date = {};
 module["exports"] = date;
-date.month = __webpack_require__(269);
-date.weekday = __webpack_require__(270);
+date.month = __webpack_require__(270);
+date.weekday = __webpack_require__(271);
 
 
 /***/ }),
-/* 269 */
+/* 270 */
 /***/ (function(module, exports) {
 
 // Source: http://unicode.org/cldr/trac/browser/tags/release-27/common/main/en.xml#L1799
@@ -66469,7 +66495,7 @@ module["exports"] = {
 
 
 /***/ }),
-/* 270 */
+/* 271 */
 /***/ (function(module, exports) {
 
 // Source: http://unicode.org/cldr/trac/browser/tags/release-27/common/main/en.xml#L1847
@@ -66518,15 +66544,15 @@ module["exports"] = {
 
 
 /***/ }),
-/* 271 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var system = {};
 module['exports'] = system;
-system.mimeTypes = __webpack_require__(272);
+system.mimeTypes = __webpack_require__(273);
 
 /***/ }),
-/* 272 */
+/* 273 */
 /***/ (function(module, exports) {
 
 /*
@@ -73112,7 +73138,7 @@ module['exports'] = {
 }
 
 /***/ }),
-/* 273 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73128,28 +73154,32 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var FaqBox = function FaqBox() {
+var InputTextBox = function InputTextBox(props) {
   return _react2.default.createElement(
-    "div",
-    { className: "faqBox" },
+    "form",
+    null,
+    _react2.default.createElement("textarea", {
+      className: "inputCommentBox",
+      value: props.inputValue,
+      onChange: props.handleChange
+    }),
     _react2.default.createElement(
-      "div",
+      "span",
       null,
-      "Use this space to cheer the creator along, and talk to your fellow backers.",
-      _react2.default.createElement("br", null),
-      _react2.default.createElement("br", null),
-      "Have questions?",
-      _react2.default.createElement("br", null),
       _react2.default.createElement(
-        "a",
-        { id: "link", herf: "www.google.com" },
-        "Check out the FAQ"
+        "button",
+        {
+          onClick: props.handleSubmit,
+          id: "submitButton",
+          className: "btn btn-link btn-lg"
+        },
+        "Submit"
       )
     )
   );
 };
 
-exports.default = FaqBox;
+exports.default = InputTextBox;
 
 /***/ })
 /******/ ]);
