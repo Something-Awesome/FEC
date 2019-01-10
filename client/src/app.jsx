@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import pledges from './sampleData';
 import Moment from 'moment';
+import $ from 'jquery';
 
 import AllOrNothing from './components/AllOrNothing.jsx';
 import Backers from './components/Backers.jsx';
@@ -11,10 +12,7 @@ import RemindMe from './components/RemindMe.jsx';
 import ShortLink from './components/ShortLink.jsx';
 import SocialMedia from './components/SocialMedia.jsx';
 import TimeLeft from './components/TimeLeft.jsx';
-
-var server = 'localhost:1234';
-var url = 'http://' + server;
-
+import { get } from 'http';
 class PledgeTracker extends React.Component {
   constructor(props) {
     super(props);
@@ -22,45 +20,40 @@ class PledgeTracker extends React.Component {
       goal: 50000,
       amountPledged: 0,
       backers: 0,
-      daysLeft: 30,
+      daysLeft: Moment().to('20190423', true),
       projectEnd: '20190423',
-      projectEndPretty: 'April 23, 2019'
+      projectEndPretty: 'April 23, 2019',
+      urlEndpoint: 'http://localhost123/pledgeTracker'
     };
   }
 
   componentDidMount() {
     this.checkPledges = setInterval(
-      () => this.fetchPledges(),
+      () => this.getPledges(),
       1000
     );
   }
 
   componentWillUnmount() {
-    clearInterval(this.fetchPledges);
+    clearInterval(this.getPledges);
   }
 
-  fetchPledges () {
-    var data = pledges;
-    this.setState({
-      amountPledged: data.totalPledged,
-      backers: data.totalBackers
+  getPledges () {
+    $.ajax({
+      method: 'GET',
+      url: '/pledgeTracker',
+      success: data => {
+        console.log('data retrieval successful', data);
+        this.setState({
+          amountPledged: data.totalPledged,
+          backers: data.totalBackers
+        });
+      },
+      error: err => {
+        console.log('error', err);
+      }
     });
   }
-
-
-  // fetch(url)
-  //   .then(function(resp) {
-  //     return resp.json();
-  //   })
-  //   .then(data => {
-  //     console.log('data', data);
-  //     this.setState({
-  //       amountPledged: data.totalPledged,
-  //       backers: data.totalBackers
-  //     });
-  //   });
-  //}
-
 
   render() {
     return (

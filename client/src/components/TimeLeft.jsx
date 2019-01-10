@@ -4,7 +4,7 @@ import Moment from 'moment';
 const TimeLeft = props => {
   return (
     <div>
-      <h4>{props.daysLeft} days to go</h4>
+      <h4>{props.daysLeft} to go</h4>
     </div>
   );
 };
