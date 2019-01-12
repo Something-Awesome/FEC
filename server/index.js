@@ -5,12 +5,14 @@ const db = require('../database/index.js');
 const seedData = require('../database/seedData.js');
 var request = require('request');
 const api = require('../client/src/config/rebrandly.js');
+const cors = require('cors');
 
 
 
 
 // server setup
 const app = express();
+app.use(cors());
 app.use(express.static(path.join(__dirname, '/../client/dist')));
 app.use(bodyParser.urlencoded({
   extended: false
