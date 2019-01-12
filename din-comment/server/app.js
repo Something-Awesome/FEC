@@ -4,12 +4,35 @@ const app = express();
 const uuid = require('uuid');
 const moment = require('moment');
 const db = require('../db/db');
+const cors = require('cors');
+
+app.use(cors());
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.use(bodyParser.urlencoded({
   extended: false
 }));
-
 app.use(express.static('public'));
+// create application/json parser
+app.use(bodyParser.json());
+
+app.options('*', cors());
+
+// app.use('/js', express.static('./public/js'));
+// app.use('/bower_components', express.static(__dirname + '/../bower_components'));
+// app.use('/css', express.static(__dirname + '/css'));
+// app.use('/partials', express.static(__dirname + '/partials'));
+app.all('/*', function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:8000");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With,     Content-Type");
+  next();
+});
+
 
 app.post('/comment', (req, res) => {
   if (req.body.comment === "") {
