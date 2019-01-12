@@ -1,11 +1,12 @@
 import React from 'react';
+import { SocialIcon } from 'react-social-icons';
 
 const SocialMedia = props => {
   return (
     <div>
-      <ahref>facebook icon</ahref>
-      <ahref>twitter icon</ahref>
-      <ahref>mail icon</ahref>
+      <SocialIcon url="http://facebook.com" />
+      <SocialIcon url="http://twitter.com" />
+      <SocialIcon url="http://gmail.com" />
     </div>
   );
 };

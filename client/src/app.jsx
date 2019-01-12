@@ -16,8 +16,11 @@ import { get } from 'http';
 class PledgeTracker extends React.Component {
   constructor(props) {
     super(props);
+    //this.handleChange = this.handleChange.bind(this);
     this.state = {
+      backer: false,
       goal: 50000,
+      databaseCall: this.getPledges(),
       amountPledged: 0,
       backers: 0,
       daysLeft: Moment().to('20190423', true),
@@ -28,15 +31,24 @@ class PledgeTracker extends React.Component {
   }
 
   componentDidMount() {
-    this.checkPledges = setInterval(
-      () => this.getPledges(),
-      1000
-    );
+    // this.checkPledges = setInterval(
+    //   () => getPledges().addChangeListener(this.handleChange),
+    //   1000
+    // );
+    //this.getPledges();
   }
 
   componentWillUnmount() {
-    clearInterval(this.getPledges);
+    //getPledges().removeChangeListener(this.handleChange);
+    //clearInterval(this.getPledges);
   }
+
+  // handleChange() {
+  //   this.setState({
+  //     amountPledged: data.totalPledged,
+  //     backers: data.totalBackers
+  //   });
+  // }
 
   getPledges () {
     $.ajax({
@@ -61,14 +73,13 @@ class PledgeTracker extends React.Component {
         <Pledged amountPledged={this.state.amountPledged} goal={this.state.goal} />
         <Backers backers={this.state.backers} />
         <TimeLeft daysLeft={this.state.daysLeft} />
-        <BackThisProject />
+        <BackThisProject backer={this.state.backer}/>
         <div>
           <RemindMe />
           <SocialMedia />
           <ShortLink />
         </div>
         <div>
-          <ahref>All or nothing.</ahref>
           <AllOrNothing projectEnd={this.state.projectEndPretty}/>
         </div>
       </div>

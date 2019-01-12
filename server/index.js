@@ -3,6 +3,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const db = require('../database/index.js');
 const seedData = require('../database/seedData.js');
+var request = require('request');
+const api = require('../client/src/config/rebrandly.js');
 
 
 
@@ -40,5 +42,28 @@ app.get('/pledgeTracker', (req, res) => {
 
       res.send(pledgeTrackerInfo);
     }
+  });
+});
+
+app.get('/shortenUrl', (req, res) => {
+  console.log('api', api);
+  request({
+    uri: 'https://api.rebrandly.com/v1/links',
+    method: 'POST',
+    body: JSON.stringify({
+      destination: 'https://localhost:1234',
+      domain: { fullName: 'rebrand.ly' }
+      //, slashtag: "A_NEW_SLASHTAG"
+      //, title: "Rebrandly YouTube channel"
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': api.REBRANDLY_API_KEY
+      //'workspace': 'YOUR_WORKSPACE_ID'
+    }
+  }, function(err, response, body) {
+    var link = JSON.parse(body);
+    console.log('Long URL was ' + link.destination + ', short URL is ' + link.shortUrl);
+    res.send(link);
   });
 });
