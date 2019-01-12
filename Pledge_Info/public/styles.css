@@ -1,0 +1,84 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.pledge-info {
+  position: relative;
+  border: thin solid;
+  border-color: lightgrey;
+  text-align: left;
+  padding: 15px;
+  margin: 0px 0px 5px 0px;
+}
+
+.pledge-info .pledge-info-hover{
+  position: absolute;
+  text-align: center;
+  color: white;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #319464f0;
+  z-index: 10;
+}
+
+.pledge-info .pledge-info-hover p{
+/*   animation */
+}
+
+.pledge-default {
+  z-index: auto;
+}
+
+.pledge-detail {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 15px 0px 0px;
+}
+.detail-text {
+  margin: 0px 0px 5px;
+}
+
+.small-caps {
+  /* font-variant: all-small-caps; */
+  text-transform: uppercase;
+  font-size: x-small;
+  color: grey;
+}
+
+.red-text {
+  color: red;
+}
+
+.grey-text {
+  color: grey;
+}
+
+.small-text {
+  font-size: smaller;
+}
+
+.extra-info-box {
+  display: flex;
+  justify-content: left;
+}
+
+.backer-info {
+}
+.pledge-reward-description ul{
+  margin: 0
+}
+
+.header {
+}
+
+p {
+}
+
+div {
+}
+
+li {
+}
