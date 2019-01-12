@@ -7,7 +7,7 @@ var symbol = '</>';
 const clickHandler = () => {
   $.ajax({
     method: 'GET',
-    url: '/shortenUrl',
+    url: 'http://localhost:1234/shortenUrl',
     success: data => {
       console.log(data.shortUrl);
       alert('Project short link: ' + data.shortUrl);
