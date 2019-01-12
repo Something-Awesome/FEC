@@ -1,0 +1,25 @@
+{
+  "name": "proxy",
+  "version": "1.0.0",
+  "description": "proxy!!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Something-Awesome/FEC.git"
+  },
+  "author": "Something Awesome",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Something-Awesome/FEC/issues"
+  },
+  "homepage": "https://github.com/Something-Awesome/FEC#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.9"
+  }
+}

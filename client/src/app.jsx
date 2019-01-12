@@ -53,7 +53,7 @@ class PledgeTracker extends React.Component {
   getPledges () {
     $.ajax({
       method: 'GET',
-      url: '/pledgeTracker',
+      url: 'http://localhost:1234/pledgeTracker',
       success: data => {
         console.log('data retrieval successful', data);
         this.setState({
@@ -87,4 +87,6 @@ class PledgeTracker extends React.Component {
   }
 }
 
-ReactDOM.render(<PledgeTracker />, document.getElementById('root'));
+// ReactDOM.render(<PledgeTracker />, document.getElementById('root'));
+
+window.campaignTracker = PledgeTracker;
