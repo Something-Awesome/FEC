@@ -17281,7 +17281,7 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // ReactDOM.render( < App / > , document.getElementById("root"));
-window.App = _App2.default;
+window.CommentMasterComponent = _App2.default;
 
 /***/ }),
 /* 134 */
@@ -17423,6 +17423,7 @@ var App = function (_Component) {
   }, {
     key: "handleReply",
     value: function handleReply(e) {
+      console.log("clicked");
       event.preventDefault();
       var clickedCommentId = e.target.parentNode.className.substring(8);
       this.setState({
@@ -17442,7 +17443,6 @@ var App = function (_Component) {
     value: function handleReplySubmit(e) {
       var _this4 = this;
 
-      event.preventDefault();
       event.preventDefault();
       _jquery2.default.ajax({
         method: "POST",
@@ -41098,7 +41098,11 @@ var Comment = function Comment(props) {
   });
 
   if (props.replied === true && (JSON.stringify(comments.commentId) === props.clickedCommentId || props.clickedCommentId === comments.commentId)) {
-    showReplyBox = _react2.default.createElement(_replyTextBox2.default, null);
+    showReplyBox = _react2.default.createElement(_replyTextBox2.default, {
+      handleReplySubmit: props.handleReplySubmit,
+      handleReplyChange: props.handleReplyChange,
+      replyMessage: props.replyMessage
+    });
   } else {
     showReplyBox = null;
   }

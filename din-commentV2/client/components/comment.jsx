@@ -25,7 +25,13 @@ const Comment = props => {
     (JSON.stringify(comments.commentId) === props.clickedCommentId ||
       props.clickedCommentId === comments.commentId)
   ) {
-    showReplyBox = <ReplyTextBox />;
+    showReplyBox = (
+      <ReplyTextBox
+        handleReplySubmit={props.handleReplySubmit}
+        handleReplyChange={props.handleReplyChange}
+        replyMessage={props.replyMessage}
+      />
+    );
   } else {
     showReplyBox = null;
   }

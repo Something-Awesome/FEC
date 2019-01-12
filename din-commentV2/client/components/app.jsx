@@ -81,6 +81,7 @@ class App extends Component {
   }
 
   handleReply(e) {
+    console.log("clicked");
     event.preventDefault();
     const clickedCommentId = e.target.parentNode.className.substring(8);
     this.setState({
@@ -96,7 +97,6 @@ class App extends Component {
   }
 
   handleReplySubmit(e) {
-    event.preventDefault();
     event.preventDefault();
     $.ajax({
       method: "POST",
