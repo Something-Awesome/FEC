@@ -4,7 +4,7 @@ import CommentGroup from "./commentGroup.jsx";
 import FaqBox from "./faqBox.jsx";
 import InputTextBox from "./inputTextBox.jsx";
 import $ from "jquery";
-import "faker/locale/en_US";
+import faker from "faker";
 
 class App extends Component {
   constructor(props) {
@@ -39,7 +39,7 @@ class App extends Component {
   loadComments() {
     $.ajax({
       method: "GET",
-      url: "/comment",
+      url: "http://localhost:3000/comment",
       success: data => {
         this.setState({
           comments: data
@@ -61,7 +61,7 @@ class App extends Component {
     event.preventDefault();
     $.ajax({
       method: "POST",
-      url: "/comment",
+      url: "http://localhost:3000/comment",
       data: {
         comment: this.state.inputValue,
         user: this.state.currentUser,
@@ -100,7 +100,7 @@ class App extends Component {
     event.preventDefault();
     $.ajax({
       method: "POST",
-      url: "/reply",
+      url: "http://localhost:3000/reply",
       data: {
         commentId: this.state.clickedCommentId,
         reply: this.state.replyMessage,
@@ -148,7 +148,5 @@ class App extends Component {
     );
   }
 }
-
+window.App = App;
 export default App;
-
-ReactDOM.render(<App />, document.getElementById("root"));
