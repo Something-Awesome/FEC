@@ -12,22 +12,40 @@
 </head>
 
 <body>
-  <div id='root'></div>
+  <div id='campaignTracker'></div>
   <div></div>
-  <div id='din'></div>
+  <div id='comments'></div>
+  <div></div>
+  <div id='faq'></div>
+  <div></div>
+  <div id='pledgeInfo'></div>
+
   <script src="http://localhost:1234/bundle.js"></script>
   <script src="http://localhost:3000/app.js"></script>
+  <script src="http://localhost:3333/bundle.js"></script>
+  <script src="http://localhost:3001/bundle.js"></script>
   <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 
   <script>
     ReactDOM.render(
       React.createElement(campaignTracker),
-      document.getElementById('root')
+      document.getElementById('campaignTracker')
     );
+
     ReactDOM.render(
       React.createElement(CommentMasterComponent),
-      document.getElementById('din')
+      document.getElementById('comments')
+    );
+
+    ReactDOM.render(
+      React.createElement(Faq),
+      document.getElementById('faq')
+    );
+
+    ReactDOM.render(
+      React.createElement(Pledges),
+      document.getElementById('pledgeInfo')
     );
   </script>
 

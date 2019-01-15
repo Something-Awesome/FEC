@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js & nodemon ../campaignTracker/server/index.js & nodemon ../comments/server/server.js & nodemon ../faqs/server/server.js & nodemon ../pledgeInfo/server/server.js",
+    "build": ""
   },
   "repository": {
     "type": "git",
