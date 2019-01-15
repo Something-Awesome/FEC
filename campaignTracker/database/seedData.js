@@ -11,6 +11,6 @@ var fakeBackers = (num) => {
   }
 };
 
-//fakeBackers(10);
+fakeBackers(10);
 
 module.exports.fakeBackers = fakeBackers;
