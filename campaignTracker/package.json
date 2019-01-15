@@ -11,7 +11,8 @@
     "build": "webpack --mode production",
     "start": "nodemon server/index.js",
     "react-dev": "webpack -d --watch",
-    "test": "jest"
+    "test": "jest",
+    "seedData": "node ./database/seedData.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.6.3",
