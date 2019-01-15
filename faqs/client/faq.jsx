@@ -54,4 +54,6 @@ class Faqs extends React.Component{
   }
 }
 
-ReactDOM.render(<Faqs/>,document.getElementById('root'))
+//ReactDOM.render(<Faqs/>,document.getElementById('root'))
+
+window.Faq = Faqs;
