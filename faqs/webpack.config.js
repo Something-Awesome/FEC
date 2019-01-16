@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: path.join(__dirname, '/client/faq.jsx'),
+  entry: path.join(__dirname, '/client/app.jsx'),
   output: {
     path: path.join(__dirname,'/public'),
     filename: 'bundle.js'
@@ -19,10 +19,7 @@ module.exports = {
   },
   devServer: {
     port: 3333,
-    open: true,
-    proxy: {
-      "/api": "http://localhost:8080"
-    }
+    open: true
   },
   plugins: [
     new CleanWebpackPlugin([path.join(__dirname,'public/bundle.js')]),
