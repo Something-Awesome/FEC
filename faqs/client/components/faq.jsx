@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import PropTypes from 'prop-types';
+
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -9,10 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 
-import Button from '@material-ui/core/Button'
-
-
-class Faqs extends React.Component{
+class Faq extends React.Component{
 
     state = {
       expanded: null
@@ -35,11 +35,11 @@ class Faqs extends React.Component{
         <Grid item xs={6}>
           <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')}>
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography component="h4">FAQ question goes here</Typography>
+                <Typography variant="h6"> {this.props.question} </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <Typography>
-                  Ask not what your country can do for you - ask what you can do for your country!
+                <Typography variant="subtitle1">
+                  {this.props.answer}
                 </Typography>
               </ExpansionPanelDetails>
             </ExpansionPanel>
@@ -56,4 +56,6 @@ class Faqs extends React.Component{
 
 //ReactDOM.render(<Faqs/>,document.getElementById('root'))
 
-window.Faq = Faqs;
+// window.Faq = Faqs;
+
+export default Faq;
