@@ -11,11 +11,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get('/faqs')
+    Axios.get('http://localhost:3333/faqs')
       .then(res => {
         const data = res.data;
         this.setState({ faqs: data});
-        // console.log(this.state.faqs);
+        console.log(this.state.faqs);
       })
   }
 
@@ -35,4 +35,5 @@ class App extends React.Component {
 
 
 
-ReactDOM.render(<App />, document.getElementById('root'));
+//ReactDOM.render(<App />, document.getElementById('root'));
+window.Faq = App;
