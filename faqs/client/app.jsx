@@ -36,4 +36,8 @@ class App extends React.Component {
 
 
 //ReactDOM.render(<App />, document.getElementById('root'));
+<<<<<<< HEAD
+
+=======
+>>>>>>> 5fb98ef6eb6acdb4f866af3421332247c3d99423
 window.Faq = App;
