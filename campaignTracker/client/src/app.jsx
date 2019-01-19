@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import pledges from './sampleData';
 import Moment from 'moment';
 import $ from 'jquery';
-import Flexbox from 'flexbox-react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 
 import AllOrNothing from './components/AllOrNothing.jsx';
 import Backers from './components/Backers.jsx';
@@ -14,12 +15,42 @@ import ShortLink from './components/ShortLink.jsx';
 import SocialMedia from './components/SocialMedia.jsx';
 import TimeLeft from './components/TimeLeft.jsx';
 import ProgressBar from './components/ProgressBar.jsx';
+import Test from './components/Test.jsx';
+
 
 import { get } from 'http';
 import { sameLine } from './Styles.jsx';
 
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
-class PledgeTracker extends React.Component {
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing.unit * 2,
+    margin: 'auto',
+    maxWidth: 500,
+  },
+  image: {
+    width: 128,
+    height: 128,
+  },
+  img: {
+    margin: 'auto',
+    display: 'block',
+    maxWidth: '100%',
+    maxHeight: '100%',
+  },
+});
+
+
+class App extends React.Component {
   constructor(props) {
     super(props);
     //this.handleChange = this.handleChange.bind(this);
@@ -35,26 +66,6 @@ class PledgeTracker extends React.Component {
       urlEndpoint: 'http://localhost123/pledgeTracker'
     };
   }
-
-  componentDidMount() {
-    // this.checkPledges = setInterval(
-    //   () => getPledges().addChangeListener(this.handleChange),
-    //   1000
-    // );
-    //this.getPledges();
-  }
-
-  componentWillUnmount() {
-    //getPledges().removeChangeListener(this.handleChange);
-    //clearInterval(this.getPledges);
-  }
-
-  // handleChange() {
-  //   this.setState({
-  //     amountPledged: data.totalPledged,
-  //     backers: data.totalBackers
-  //   });
-  // }
 
   getPledges () {
     $.ajax({
@@ -74,32 +85,57 @@ class PledgeTracker extends React.Component {
   }
 
   render() {
+
     return (
-      <Flexbox flexDirection="row">
-        <div>
-          <ProgressBar amountedPledged={this.state.amountPledged} goal={this.state.goal} />
-          <Pledged amountPledged={this.state.amountPledged} goal={this.state.goal} />
-          <Backers backers={this.state.backers} />
-          <TimeLeft daysLeft={this.state.daysLeft} />
-          <BackThisProject backer={this.state.backer}/>
-          <div style={sameLine}>
-            <RemindMe />
-            <SocialMedia />
-            <ShortLink />
-          </div>
-          <div>
-            <div>
-              <pre>
-              </pre>
-            </div>
-            <AllOrNothing projectEnd={this.state.projectEndPretty}/>
-          </div>
-        </div>
-      </Flexbox>
+      <div className={this.root}>
+        <Paper className={this.paper}>
+          <Grid container spacing={12}>
+            <Grid item xs={12}>
+              <ProgressBar amountPledged={this.state.amountPledged} goal={this.state.goal} />
+            </Grid>
+            <Grid item xs={12}>
+              <Pledged amountPledged={this.state.amountPledged} goal={this.state.goal} />
+            </Grid>
+            <Grid item xs={12}>
+              <Backers backers={this.state.backers} />
+            </Grid>
+            <Grid item xs={12}>
+              <TimeLeft daysLeft={this.state.daysLeft} />
+            </Grid>
+            <Grid item xs={12}>
+              <BackThisProject backer={this.state.backer}/>
+            </Grid>
+            <Grid item xs={3}>
+              <RemindMe />
+            </Grid>
+            <Grid container xs={12}>
+              <Grid item xs={3}>
+                <SocialMedia />
+              </Grid>
+            </Grid>
+            <Grid item xs={12}>
+              <AllOrNothing projectEnd={this.state.projectEndPretty}/>
+            </Grid>
+          </Grid>
+        </Paper>
+      </div>
+
     );
   }
 }
 
-// ReactDOM.render(<PledgeTracker />, document.getElementById('root'));
 
-window.campaignTracker = PledgeTracker;
+window.campaignTracker = App;
+
+/*
+To Do:
+progressbar
+social media icons
+campaign data to database
+timeleft to days to go instead of months
+buttons
+grid system
+font
+cron job updater
+background color
+*/
