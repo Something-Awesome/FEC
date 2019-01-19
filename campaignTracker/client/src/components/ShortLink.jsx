@@ -18,10 +18,14 @@ const clickHandler = () => {
   });
 };
 
+var style = {
+  color: 'gray'
+};
+
 const ShortLink = props => {
   return (
     <div>
-      <a href='#' onClick={clickHandler}>{symbol}</a>
+      <a href='#' onClick={clickHandler} style={style} >{symbol} </a>
     </div>
   );
 };
