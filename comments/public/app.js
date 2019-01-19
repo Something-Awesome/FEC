@@ -17266,9 +17266,9 @@ module['exports'] = Random;
 "use strict";
 
 
-var _App = __webpack_require__(134);
+var _app = __webpack_require__(1201);
 
-var _App2 = _interopRequireDefault(_App);
+var _app2 = _interopRequireDefault(_app);
 
 var _react = __webpack_require__(1);
 
@@ -17281,229 +17281,10 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // ReactDOM.render( < App / > , document.getElementById("root"));
-window.CommentMasterComponent = _App2.default;
+window.CommentMasterComponent = _app2.default;
 
 /***/ }),
-/* 134 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(5);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _commentGroup = __webpack_require__(145);
-
-var _commentGroup2 = _interopRequireDefault(_commentGroup);
-
-var _faqBox = __webpack_require__(151);
-
-var _faqBox2 = _interopRequireDefault(_faqBox);
-
-var _inputTextBox = __webpack_require__(152);
-
-var _inputTextBox2 = _interopRequireDefault(_inputTextBox);
-
-var _jquery = __webpack_require__(153);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _faker = __webpack_require__(154);
-
-var _faker2 = _interopRequireDefault(_faker);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var App = function (_Component) {
-  _inherits(App, _Component);
-
-  function App(props) {
-    _classCallCheck(this, App);
-
-    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
-
-    _this.state = {
-      comments: [],
-
-      inputValue: "",
-      currentUser: _faker2.default.internet.userName(),
-      currentUserAvatar: _faker2.default.internet.avatar(),
-
-      // reply related states
-      replied: false, // use to control when to expand reply box
-      replyId: "",
-      replyMessage: "",
-      clickedCommentId: ""
-    };
-    // comments
-    _this.handleChange = _this.handleChange.bind(_this);
-    _this.handleSubmit = _this.handleSubmit.bind(_this);
-
-    // replies
-    _this.handleReply = _this.handleReply.bind(_this);
-    _this.handleReplyChange = _this.handleReplyChange.bind(_this);
-    _this.handleReplySubmit = _this.handleReplySubmit.bind(_this);
-    return _this;
-  }
-
-  _createClass(App, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.loadComments();
-    }
-  }, {
-    key: "loadComments",
-    value: function loadComments() {
-      var _this2 = this;
-
-      _jquery2.default.ajax({
-        method: "GET",
-        url: "http://localhost:3000/comment",
-        success: function success(data) {
-          _this2.setState({
-            comments: data
-          });
-        },
-        error: function error(err) {
-          console.log("AJAX failed", err);
-        }
-      });
-    }
-  }, {
-    key: "handleChange",
-    value: function handleChange(e) {
-      this.setState({
-        inputValue: e.target.value
-      });
-    }
-  }, {
-    key: "handleSubmit",
-    value: function handleSubmit() {
-      var _this3 = this;
-
-      event.preventDefault();
-      _jquery2.default.ajax({
-        method: "POST",
-        url: "http://localhost:3000/comment",
-        data: {
-          comment: this.state.inputValue,
-          user: this.state.currentUser,
-          avatar: this.state.currentUserAvatar
-        },
-        success: function success(data) {
-          _this3.loadComments();
-          _this3.setState({
-            inputValue: ""
-          });
-          event.preventDefault();
-        },
-        error: function error(err) {
-          console.log("AJAX failed", err);
-        }
-      });
-    }
-  }, {
-    key: "handleReply",
-    value: function handleReply(e) {
-      console.log("clicked");
-      event.preventDefault();
-      var clickedCommentId = e.target.parentNode.className.substring(8);
-      this.setState({
-        replied: !this.state.replied,
-        clickedCommentId: clickedCommentId
-      });
-    }
-  }, {
-    key: "handleReplyChange",
-    value: function handleReplyChange(e) {
-      this.setState({
-        replyMessage: e.target.value
-      });
-    }
-  }, {
-    key: "handleReplySubmit",
-    value: function handleReplySubmit(e) {
-      var _this4 = this;
-
-      event.preventDefault();
-      _jquery2.default.ajax({
-        method: "POST",
-        url: "http://localhost:3000/reply",
-        data: {
-          commentId: this.state.clickedCommentId,
-          reply: this.state.replyMessage,
-          user: this.state.currentUser,
-          avatar: this.state.currentUserAvatar
-        },
-        success: function success(data) {
-          console.log("AJAX REPLY success", data);
-          _this4.setState({
-            replied: !_this4.state.replied,
-            replyMessage: "",
-            replyId: data
-          });
-          _this4.loadComments();
-        },
-        error: function error(err) {
-          console.log("AJAX REPLY failed", err);
-        }
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement(
-        "div",
-        { className: "wrapper" },
-        _react2.default.createElement(_inputTextBox2.default, {
-          inputValue: this.state.inputValue,
-          handleChange: this.handleChange,
-          handleSubmit: this.handleSubmit
-        }),
-        _react2.default.createElement("div", null),
-        _react2.default.createElement(_commentGroup2.default, {
-          comments: this.state.comments,
-          currentUser: this.state.currentUser,
-          currentUserAvatar: this.state.currentUserAvatar,
-          replied: this.state.replied,
-          replyId: this.state.replyId,
-          replyMessage: this.state.replyMessage,
-          clickedCommentId: this.state.clickedCommentId,
-          handleReply: this.handleReply,
-          handleReplyChange: this.handleReplyChange,
-          handleReplySubmit: this.handleReplySubmit
-        }),
-        _react2.default.createElement(_faqBox2.default, null)
-      );
-    }
-  }]);
-
-  return App;
-}(_react.Component);
-
-exports.default = App;
-
-window.App = App;
-
-/***/ }),
+/* 134 */,
 /* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -140951,6 +140732,226 @@ module["exports"] = [
   "09##-######"
 ];
 
+
+/***/ }),
+/* 1201 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(5);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _commentGroup = __webpack_require__(145);
+
+var _commentGroup2 = _interopRequireDefault(_commentGroup);
+
+var _faqBox = __webpack_require__(151);
+
+var _faqBox2 = _interopRequireDefault(_faqBox);
+
+var _inputTextBox = __webpack_require__(152);
+
+var _inputTextBox2 = _interopRequireDefault(_inputTextBox);
+
+var _jquery = __webpack_require__(153);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _faker = __webpack_require__(154);
+
+var _faker2 = _interopRequireDefault(_faker);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var App = function (_Component) {
+  _inherits(App, _Component);
+
+  function App(props) {
+    _classCallCheck(this, App);
+
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+    _this.state = {
+      comments: [],
+
+      inputValue: "",
+      currentUser: _faker2.default.internet.userName(),
+      currentUserAvatar: _faker2.default.internet.avatar(),
+
+      // reply related states
+      replied: false, // use to control when to expand reply box
+      replyId: "",
+      replyMessage: "",
+      clickedCommentId: ""
+    };
+    // comments
+    _this.handleChange = _this.handleChange.bind(_this);
+    _this.handleSubmit = _this.handleSubmit.bind(_this);
+
+    // replies
+    _this.handleReply = _this.handleReply.bind(_this);
+    _this.handleReplyChange = _this.handleReplyChange.bind(_this);
+    _this.handleReplySubmit = _this.handleReplySubmit.bind(_this);
+    return _this;
+  }
+
+  _createClass(App, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.loadComments();
+    }
+  }, {
+    key: "loadComments",
+    value: function loadComments() {
+      var _this2 = this;
+
+      _jquery2.default.ajax({
+        method: "GET",
+        url: "http://localhost:3000/comment",
+        success: function success(data) {
+          _this2.setState({
+            comments: data
+          });
+        },
+        error: function error(err) {
+          console.log("AJAX failed", err);
+        }
+      });
+    }
+  }, {
+    key: "handleChange",
+    value: function handleChange(e) {
+      this.setState({
+        inputValue: e.target.value
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit() {
+      var _this3 = this;
+
+      event.preventDefault();
+      _jquery2.default.ajax({
+        method: "POST",
+        url: "http://localhost:3000/comment",
+        data: {
+          comment: this.state.inputValue,
+          user: this.state.currentUser,
+          avatar: this.state.currentUserAvatar
+        },
+        success: function success(data) {
+          _this3.loadComments();
+          _this3.setState({
+            inputValue: ""
+          });
+          event.preventDefault();
+        },
+        error: function error(err) {
+          console.log("AJAX failed", err);
+        }
+      });
+    }
+  }, {
+    key: "handleReply",
+    value: function handleReply(e) {
+      console.log("clicked");
+      event.preventDefault();
+      var clickedCommentId = e.target.parentNode.className.substring(8);
+      this.setState({
+        replied: !this.state.replied,
+        clickedCommentId: clickedCommentId
+      });
+    }
+  }, {
+    key: "handleReplyChange",
+    value: function handleReplyChange(e) {
+      this.setState({
+        replyMessage: e.target.value
+      });
+    }
+  }, {
+    key: "handleReplySubmit",
+    value: function handleReplySubmit(e) {
+      var _this4 = this;
+
+      event.preventDefault();
+      _jquery2.default.ajax({
+        method: "POST",
+        url: "http://localhost:3000/reply",
+        data: {
+          commentId: this.state.clickedCommentId,
+          reply: this.state.replyMessage,
+          user: this.state.currentUser,
+          avatar: this.state.currentUserAvatar
+        },
+        success: function success(data) {
+          console.log("AJAX REPLY success", data);
+          _this4.setState({
+            replied: !_this4.state.replied,
+            replyMessage: "",
+            replyId: data
+          });
+          _this4.loadComments();
+        },
+        error: function error(err) {
+          console.log("AJAX REPLY failed", err);
+        }
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "div",
+        { className: "wrapper" },
+        _react2.default.createElement(_inputTextBox2.default, {
+          inputValue: this.state.inputValue,
+          handleChange: this.handleChange,
+          handleSubmit: this.handleSubmit
+        }),
+        _react2.default.createElement("div", null),
+        _react2.default.createElement(_commentGroup2.default, {
+          comments: this.state.comments,
+          currentUser: this.state.currentUser,
+          currentUserAvatar: this.state.currentUserAvatar,
+          replied: this.state.replied,
+          replyId: this.state.replyId,
+          replyMessage: this.state.replyMessage,
+          clickedCommentId: this.state.clickedCommentId,
+          handleReply: this.handleReply,
+          handleReplyChange: this.handleReplyChange,
+          handleReplySubmit: this.handleReplySubmit
+        }),
+        _react2.default.createElement(_faqBox2.default, null)
+      );
+    }
+  }]);
+
+  return App;
+}(_react.Component);
+
+exports.default = App;
+
+window.App = App;
 
 /***/ })
 /******/ ]);

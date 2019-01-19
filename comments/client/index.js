@@ -1,4 +1,4 @@
-import CommentMasterComponent from "./components/App.jsx";
+import CommentMasterComponent from "./components/app.jsx";
 import React, {
   Component
 } from "react";
