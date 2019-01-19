@@ -15,7 +15,7 @@ class App extends React.Component {
       .then(res => {
         const data = res.data;
         this.setState({ faqs: data});
-        // console.log(this.state.faqs);
+        console.log(this.state.faqs);
       })
   }
 
@@ -36,5 +36,8 @@ class App extends React.Component {
 
 
 //ReactDOM.render(<App />, document.getElementById('root'));
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5fb98ef6eb6acdb4f866af3421332247c3d99423
 window.Faq = App;
