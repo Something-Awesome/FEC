@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const db = require('../database/index.js');
-const seedData = require('../database/seedData.js');
 var request = require('request');
 const api = require('../client/src/config/rebrandly.js');
 const cors = require('cors');
@@ -25,7 +24,6 @@ app.listen(process.env.PORT || 1234, () => {
 
 // get backer amounts from database
 app.get('/pledgeTracker', (req, res) => {
-  //seedData.fakeBackers(10);
   db.Backer.find({}).exec((err, backers) => {
     if (err) {
       res.status(404).send('404 Error!');
