@@ -39,7 +39,7 @@ class App extends Component {
   loadComments() {
     $.ajax({
       method: "GET",
-      url: "http://localhost:3000/comment",
+      url: "http://localhost:3030/comment",
       success: data => {
         this.setState({
           comments: data
@@ -61,7 +61,7 @@ class App extends Component {
     event.preventDefault();
     $.ajax({
       method: "POST",
-      url: "http://localhost:3000/comment",
+      url: "http://localhost:3030/comment",
       data: {
         comment: this.state.inputValue,
         user: this.state.currentUser,
@@ -100,7 +100,7 @@ class App extends Component {
     event.preventDefault();
     $.ajax({
       method: "POST",
-      url: "http://localhost:3000/reply",
+      url: "http://localhost:3030/reply",
       data: {
         commentId: this.state.clickedCommentId,
         reply: this.state.replyMessage,
