@@ -29,15 +29,19 @@ app.use(bodyParser.urlencoded({
 app.use(express.static('public'));
 
 app.post('/comment', (req, res) => {
-  if (req.body.comment === "") {
+  let comment = req.body.comment || req.query.comment;
+  let user = req.body.user || req.query.user;
+  let avatar = req.body.avatar || req.query.avatar;
+
+  if (comment === "") {
     res.status(400).send('please enter comment'); // bad request
   }
 
   db.CommentModel.create({
     commentId: uuid(),
-    comment: req.body.comment,
-    user: req.body.user,
-    avatar: req.body.avatar,
+    comment: comment,
+    user: user,
+    avatar: avatar,
     createdAt: moment(),
     replies: []
   }, (err, data) => {
@@ -50,17 +54,22 @@ app.post('/comment', (req, res) => {
 });
 
 app.post('/reply', (req, res) => {
-  if (req.body.reply === "") {
+  let reply = req.body.reply || req.query.reply;
+  let user = req.body.user || req.query.user;
+  let avatar = req.body.avatar || req.query.avatar;
+  let commentId = req.body.commentId || req.query.commentId;
+
+  if (reply === "") {
     res.status(400).send('please enter reply'); // bad request
   }
   const newReply = {};
   newReply['replyId'] = uuid();
-  newReply['user'] = req.body.user;
-  newReply['reply'] = req.body.reply;
-  newReply['avatar'] = req.body.avatar;
+  newReply['user'] = user;
+  newReply['reply'] = reply;
+  newReply['avatar'] = avatar;
   newReply['createdAt'] = moment();
   db.CommentModel.findOneAndUpdate({
-      commentId: req.body.commentId
+      commentId: commentId
     }, {
       $push: {
         replies: {
