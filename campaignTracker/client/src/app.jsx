@@ -15,7 +15,7 @@ import ShortLink from './components/ShortLink.jsx';
 import SocialMedia from './components/SocialMedia.jsx';
 import TimeLeft from './components/TimeLeft.jsx';
 import ProgressBar from './components/ProgressBar.jsx';
-import Test from './components/Test.jsx';
+
 
 
 import { get } from 'http';

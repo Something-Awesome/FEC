@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/KickstarterClone', {
-  useNewUrlParser: true
+var mongoDB = 'mongodb://caseyShamey:cassidy12@ds111025.mlab.com:11025/sandbox';
+
+mongoose.connect(mongoDB, {
+  useMongoClient: true
 });
 
 var db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 var backerSchema = mongoose.Schema({
   pledgeAmount: Number
