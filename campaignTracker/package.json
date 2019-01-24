@@ -9,10 +9,9 @@
   },
   "scripts": {
     "build": "webpack --mode production",
-    "start": "nodemon server/index.js & node database/seedData.js",
+    "start": "nodemon server/index.js & webpack --mode production",
     "react-dev": "webpack -d --watch",
-    "test": "jest",
-    "seedData": "node ./database/seedData.js"
+    "test": "jest"
   },
   "dependencies": {
     "@material-ui/core": "^3.9.0",
