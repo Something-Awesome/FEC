@@ -63,14 +63,14 @@ class App extends React.Component {
       daysLeft: Moment().to('20190423', true),
       projectEnd: '20190423',
       projectEndPretty: 'April 23, 2019',
-      urlEndpoint: 'http://localhost123/pledgeTracker'
+      urlEndpoint: '/pledgeTracker'
     };
   }
 
   getPledges () {
     $.ajax({
       method: 'GET',
-      url: 'http://localhost:1234/pledgeTracker',
+      url: '/pledgeTracker',
       success: data => {
         console.log('data retrieval successful', data);
         this.setState({
@@ -111,6 +111,7 @@ class App extends React.Component {
             <Grid container xs={12}>
               <Grid item xs={3}>
                 <SocialMedia />
+                <ShortLink />
               </Grid>
             </Grid>
             <Grid item xs={12}>
@@ -124,6 +125,7 @@ class App extends React.Component {
   }
 }
 
+//ReactDOM.render(element, document.getElementById('root'));
 
 window.campaignTracker = App;
 

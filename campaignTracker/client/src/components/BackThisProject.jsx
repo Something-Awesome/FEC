@@ -11,7 +11,7 @@ const BackThisProject = props => {
   { if (!props.backer) {
     return (
       <div>
-        <button id="notBacker" onClick={clickHandler}>Back this project</button>
+        <button id="notBacker" onClick={clickHandler} style={{backgroundColor: 'green'}}>Back this project</button>
       </div>
     );
   } else {
