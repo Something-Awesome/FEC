@@ -17,6 +17,15 @@ var fakeBackers = (num) => {
 console.log('Database Seeded');
 //};
 
+var fakeCampaign = () => {
+  db.Campaign.create({
+    goal: 50000,
+    projectEnd: '20190423'
+  });
+};
+
 fakeBackers(100);
+fakeCampaign();
 
 module.exports.fakeBackers = fakeBackers;
+module.exports.fakeCampaign = fakeCampaign;

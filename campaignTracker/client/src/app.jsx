@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import pledges from './sampleData';
 import Moment from 'moment';
 import $ from 'jquery';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -19,7 +18,6 @@ import ProgressBar from './components/ProgressBar.jsx';
 
 
 import { get } from 'http';
-import { sameLine } from './Styles.jsx';
 
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -56,12 +54,12 @@ class App extends React.Component {
     //this.handleChange = this.handleChange.bind(this);
     this.state = {
       backer: false,
-      goal: 50000,
-      databaseCall: this.getPledges(),
+      goal: 0,
+      databaseCallPledges: this.getPledges(),
+      databaseCallCampaign: this.getCampaign(),
       amountPledged: 0,
       backers: 0,
-      daysLeft: Moment().to('20190423', true),
-      projectEnd: '20190423',
+      projectEnd: '',
       projectEndPretty: 'April 23, 2019',
       urlEndpoint: '/pledgeTracker'
     };
@@ -81,6 +79,30 @@ class App extends React.Component {
       error: err => {
         console.log('error', err);
       }
+    });
+  }
+
+  getCampaign () {
+    $.ajax({
+      method: 'GET',
+      url: '/campaign',
+      success: data => {
+        console.log('data retrieval successful', data);
+        this.setState({
+          goal: data.goal,
+          projectEnd: data.projectEnd
+        });
+        this.loadProjectEnd();
+      },
+      error: err => {
+        console.log('error', err);
+      }
+    });
+  }
+
+  loadProjectEnd () {
+    this.setState({
+      daysLeft: Moment().to(this.state.projectEnd, true)
     });
   }
 

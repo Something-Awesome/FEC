@@ -45,6 +45,16 @@ app.get('/pledgeTracker', (req, res) => {
   });
 });
 
+app.get('/campaign', (req, res) => {
+  db.Campaign.find({}).exec((err, campaign) => {
+    if (err) {
+      res.status(404).send('404 Error!');
+    } else {
+      res.send(campaign[0]);
+    }
+  });
+});
+
 app.get('/shortenUrl', (req, res) => {
   console.log('api', api);
   request({

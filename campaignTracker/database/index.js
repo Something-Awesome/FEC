@@ -13,9 +13,22 @@ var backerSchema = mongoose.Schema({
   pledgeAmount: Number
 });
 
+var campaignSchema = mongoose.Schema({
+  goal: Number,
+  projectEnd: String
+});
+
 var Backer = mongoose.model('Backer', backerSchema);
 
 Backer.on('error', function(err) {
+  if (err) {
+    console.error(err);
+  }
+});
+
+var Campaign = mongoose.model('Campaign', campaignSchema);
+
+Campaign.on('error', function(err) {
   if (err) {
     console.error(err);
   }
@@ -28,3 +41,4 @@ db.once('open', function() {
 
 
 module.exports.Backer = Backer;
+module.exports.Campaign = Campaign;
