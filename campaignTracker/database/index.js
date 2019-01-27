@@ -15,7 +15,10 @@ var backerSchema = mongoose.Schema({
 
 var campaignSchema = mongoose.Schema({
   goal: Number,
-  projectEnd: String
+  projectEnd: String,
+  facebookPage: String,
+  twitterPage: String,
+  emailAddress: String
 });
 
 var Backer = mongoose.model('Backer', backerSchema);

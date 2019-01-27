@@ -20,7 +20,10 @@ console.log('Database Seeded');
 var fakeCampaign = () => {
   db.Campaign.create({
     goal: 50000,
-    projectEnd: '20190423'
+    projectEnd: '20190423',
+    facebookPage: 'https://facebook.com',
+    twitterPage: 'https://twitter.com',
+    emailAddress: 'nowhere@gmail.com'
   });
 };
 

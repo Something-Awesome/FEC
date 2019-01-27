@@ -61,6 +61,9 @@ class App extends React.Component {
       backers: 0,
       projectEnd: '',
       projectEndPretty: 'April 23, 2019',
+      facebookPage: '',
+      twitterPage: '',
+      emailAddress: '',
       urlEndpoint: '/pledgeTracker'
     };
   }
@@ -90,7 +93,10 @@ class App extends React.Component {
         console.log('data retrieval successful', data);
         this.setState({
           goal: data.goal,
-          projectEnd: data.projectEnd
+          projectEnd: data.projectEnd,
+          facebookPage: data.facebookPage,
+          twitterPage: data.twitterPage,
+          emailAddress: data.emailAddress
         });
         this.loadProjectEnd();
       },
@@ -132,8 +138,7 @@ class App extends React.Component {
             </Grid>
             <Grid container xs={12}>
               <Grid item xs={3}>
-                <SocialMedia />
-                <ShortLink />
+                <SocialMedia facebookPage={this.state.facebookPage} twitterPage={this.state.twitterPage} emailAddress={this.state.emailAddress} />
               </Grid>
             </Grid>
             <Grid item xs={12}>
