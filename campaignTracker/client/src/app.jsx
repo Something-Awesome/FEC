@@ -60,7 +60,7 @@ class App extends React.Component {
       amountPledged: 0,
       backers: 0,
       projectEnd: '',
-      projectEndPretty: 'April 23, 2019',
+      projectEndPretty: '',
       facebookPage: '',
       twitterPage: '',
       emailAddress: '',
@@ -99,6 +99,7 @@ class App extends React.Component {
           emailAddress: data.emailAddress
         });
         this.loadProjectEnd();
+        this.makeProjectEndPretty();
       },
       error: err => {
         console.log('error', err);
@@ -110,6 +111,39 @@ class App extends React.Component {
     this.setState({
       daysLeft: Moment().to(this.state.projectEnd, true)
     });
+  }
+
+  makeProjectEndPretty () {
+    var projectEndYear = this.state.projectEnd.slice(0, 4);
+    var projectEndDay = this.state.projectEnd.slice(6);
+    console.log('day', projectEndDay);
+    var projectEndMonth = (num) => {
+      if (num === '01') {
+        return 'January';
+      } else if (num === '02') {
+        return 'February';
+      } else if (num === '03') {
+        return 'March';
+      } else if (num === '04') {
+        return 'April';
+      } else if (num === '05') {
+        return 'May';
+      } else if (num === '06') {
+        return 'June';
+      } else if (num === '07') {
+        return 'July';
+      } else if (num === '08') {
+        return 'August';
+      } else if (num === '09') {
+        return 'September';
+      } else if (num === '10') {
+        return 'October';
+      } else if (num === '11') {
+        return 'November';
+      } else {
+        return 'December';
+      }
+    };
   }
 
   render() {
