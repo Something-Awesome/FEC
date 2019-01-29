@@ -9,7 +9,7 @@ const AllOrNothing = props => {
     <div>
       <pre>
         <a href="#!" onClick={clickHandler}>All or nothing</a>
-      . This project will only be funded if it reaches its goal by {props.projectEnd}</pre>
+      . This project will only be funded if it reaches its goal by {props.projectEnd}.</pre>
     </div>
   );
 };
